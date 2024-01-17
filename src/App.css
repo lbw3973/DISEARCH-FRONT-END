@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  background-color: #313338;
+  color: #fff;
+  min-width: 320px;
+}
