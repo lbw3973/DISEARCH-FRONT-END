@@ -1,13 +1,15 @@
-import CategoryAndTag from "@/components/CategoryAndTag";
 import ContentList from "@/components/ContentList";
+import SideBar from "@/components/SidaBar";
 import Welcome from "@/components/Welcome";
 
 const Home = () => {
   return (
     <section>
       <Welcome />
-      <CategoryAndTag />
-      <ContentList />
+      <div className="grid grid-cols-[300px_1fr]">
+        <SideBar />
+        <ContentList />
+      </div>
     </section>
   );
 };
