@@ -46,7 +46,7 @@ const mock_Contents: Content[] = [
 
 const ContentList = () => {
   return (
-    <div className="w-[1200px] flex flex-wrap mx-auto">
+    <div className="w-full flex flex-wrap mx-auto">
       {mock_Contents.map((content, index) => (
         <ContentItem content={content} key={index} />
       ))}

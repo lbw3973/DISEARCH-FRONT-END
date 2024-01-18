@@ -9,10 +9,8 @@ interface Content {
 }
 
 const ContentItem = (content: { content: Content }) => {
-  console.log(content);
-
   return (
-    <div className="w-[33.3%] flex-none">
+    <div className="w-[33.3%] flex-none h-[1000px]">
       <div>{content.content.channelName}</div>
     </div>
   );
