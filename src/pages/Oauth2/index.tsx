@@ -1,5 +1,5 @@
-import { useUserGuildsStore } from "@/store/userGuildsStore";
-import { useUserInfoStore } from "@/store/userInfo";
+import { useUserGuildsStore } from "@/stores/userGuildsStore";
+import { useUserInfoStore } from "@/stores/userInfo";
 import { IUserGuildsInfo, IUserInfo } from "@/types/discord";
 import { setCookie } from "@/util/cookie";
 import { useEffect, useState } from "react";

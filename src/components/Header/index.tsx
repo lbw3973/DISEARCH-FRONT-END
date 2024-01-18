@@ -1,5 +1,5 @@
-import { useUserGuildsStore } from "@/store/userGuildsStore";
-import { useUserInfoStore } from "@/store/userInfo";
+import { useUserGuildsStore } from "@/stores/userGuildsStore";
+import { useUserInfoStore } from "@/stores/userInfo";
 import { FcSearch } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
