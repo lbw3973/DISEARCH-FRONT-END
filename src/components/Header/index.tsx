@@ -1,11 +1,26 @@
+import { useUserGuildsStore } from "@/store/userGuildsStore";
+import { useUserInfoStore } from "@/store/userInfo";
 import { FcSearch } from "react-icons/fc";
+import { Link } from "react-router-dom";
+
+const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=http://localhost:5173/OAuth2`;
 
 const Header = () => {
+  const { userInfo } = useUserInfoStore();
+  const { userGuildsInfo } = useUserGuildsStore();
   return (
     <header className=" bg-[#313338] w-full h-[120px]">
       <div className="flex items-center justify-between w-full h-[90px] px-5">
         <div>
-          <h1 className="text-white text-[30px]">DISEARCH</h1>
+          <h1
+            className="text-white text-[30px]"
+            onClick={() => {
+              console.log(userInfo);
+              console.log(userGuildsInfo);
+            }}
+          >
+            DISEARCH
+          </h1>
         </div>
         <form className="relative lg:w-[440px]">
           <div className="flex h-8">
@@ -15,10 +30,10 @@ const Header = () => {
           </div>
         </form>
         <div className="">
-          <button className="flex sm:text-base text-sm cursor-pointer ">
+          <Link to={loginURL} className="flex sm:text-base text-sm cursor-pointer">
             <img src="/discord.png" alt="디스코드로고" width={70} />
             <span className="text-center h-[50px] leading-[50px]">로그인</span>
-          </button>
+          </Link>
         </div>
       </div>
     </header>
