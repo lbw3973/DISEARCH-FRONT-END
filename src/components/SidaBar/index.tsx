@@ -16,7 +16,7 @@ const mock_tag = [
 
 const SideBar = () => {
   return (
-    <div className="relative max-w-[300px] min-w-[250px]">
+    <div className="relative md:max-w-[300px] md:min-w-[250px] pt-3 max-w-[50%] min-w-[350px]">
       <div className="w-[90%] bg-[#7289da] p-3 text-white font-Pretendard rounded-lg sticky top-40 mx-auto">
         <div>
           <h3 className="text-xl text-[#424242] text-center mb-3 after:block after:w-1/5 after:h-px after:bg-[rgba(0,0,0,0.2)] after:mx-auto">

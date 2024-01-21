@@ -10,7 +10,7 @@ interface Content {
 
 const ContentItem = ({ content }: { content: Content }) => {
   return (
-    <div className="2xl:w-1/3 lg:w-1/2 md:w-full flex-none min-w-[350px] p-3 ">
+    <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[350px] p-3 w-full">
       <div className="bg-black h-full rounded-md">
         <div className="flex justify-between py-1 px-2 items-center bg-gray-700 rounded-t-md">
           <h2 className="text-xl">{content.channelName}</h2>
