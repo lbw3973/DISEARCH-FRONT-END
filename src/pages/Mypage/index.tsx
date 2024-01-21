@@ -1,5 +1,6 @@
 import MypageList from "@/components/MypageList";
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 const Mypage = () => {
   return (

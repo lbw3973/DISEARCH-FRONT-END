@@ -25,7 +25,7 @@ const Header = () => {
           </div>
         </form>
         <div className="w-[170px]  flex items-center justify-center">
-          <button className="bg-gray-500 w-[150px] flex justify-center rounded-xl">
+          <button className="bg-gray-500 w-[120px] flex justify-center rounded-xl">
             <img src="/discord.png" alt="discord" className="w-[70px] -ml-5" />
             <span className="text-center h-[50px] leading-[50px] -ml-3">로그인</span>
           </button>
