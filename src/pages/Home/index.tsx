@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <section>
       <Welcome />
-      <div className="grid grid-cols-[300px_1fr]">
+      <div className="flex">
         <SideBar />
         <ContentList />
       </div>
