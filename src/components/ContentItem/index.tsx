@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Content {
   channelName: string;
   img: string;

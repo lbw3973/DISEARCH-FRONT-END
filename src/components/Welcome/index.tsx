@@ -1,14 +1,6 @@
-import { MouseEvent } from "react";
-import { FcSearch } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
-  const handleSubmit = (e: MouseEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const inputEl = e.currentTarget.firstChild as HTMLInputElement;
-    console.log(inputEl.value);
-    inputEl.value = "";
-  };
   return (
     <div className="flex justify-evenly items-center flex-col px-4 mb-10">
       <Link to={"/new"} className="bg-black text-4xl p-4 rounded-md">

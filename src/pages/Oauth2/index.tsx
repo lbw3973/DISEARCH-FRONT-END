@@ -5,6 +5,16 @@ import { setCookie } from "@/util/cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+interface IResponse {
+  features: string[];
+  icon: string;
+  id: string;
+  name: string;
+  owner: boolean;
+  permissions: number;
+  permissions_new: string;
+}
+
 const OAuth2 = () => {
   const [isMount, setIsMount] = useState(false);
   const { setUserInfo } = useUserInfoStore();
@@ -69,11 +79,13 @@ const OAuth2 = () => {
       },
     });
 
-    const userGuilds: any[] = await reponse.json();
-    const _userGuildsInfo: IUserGuildsInfo[] = userGuilds.filter((userGuild: any) => {
-      return userGuild.owner === true;
-    });
-    setUserGuildsInfo(_userGuildsInfo);
+    const userGuilds = await reponse.json();
+    if (Array.isArray(userGuilds)) {
+      const _userGuildsInfo: IUserGuildsInfo[] = userGuilds.filter((userGuild: IResponse) => {
+        return userGuild.owner === true;
+      });
+      setUserGuildsInfo(_userGuildsInfo);
+    }
   };
 
   return null;

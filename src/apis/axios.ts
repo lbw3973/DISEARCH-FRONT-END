@@ -1,5 +1,4 @@
-import axios, { AxiosError } from "axios";
-import { getCookie, removeCookie, setCookie } from "@/util/cookie";
+import axios from "axios";
 
 const createInstance = (ContentType: string) => {
   const instance = axios.create({

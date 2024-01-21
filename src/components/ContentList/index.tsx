@@ -1,4 +1,3 @@
-import React from "react";
 import ContentItem from "../ContentItem";
 
 interface Content {
