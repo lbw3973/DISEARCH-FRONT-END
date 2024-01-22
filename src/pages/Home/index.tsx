@@ -1,13 +1,15 @@
-import CategoryAndTag from "@/components/CategoryAndTag";
 import ContentList from "@/components/ContentList";
+import SideBar from "@/components/SidaBar";
 import Welcome from "@/components/Welcome";
 
 const Home = () => {
   return (
     <section>
       <Welcome />
-      <CategoryAndTag />
-      <ContentList />
+      <div className="flex flex-col md:flex-row items-center md:items-stretch gap-5 md:gap-0">
+        <SideBar />
+        <ContentList />
+      </div>
     </section>
   );
 };

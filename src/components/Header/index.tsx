@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { Link } from "react-router-dom";
+const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=http://localhost:5173/OAuth2`;
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -24,11 +26,11 @@ const Header = () => {
             </button>
           </div>
         </form>
-        <div className="w-[170px]  flex items-center justify-center">
-          <button className="bg-gray-500 w-[120px] flex justify-center rounded-xl">
-            <img src="/discord.png" alt="discord" className="w-[70px] -ml-5" />
-            <span className="text-center h-[50px] leading-[50px] -ml-3">로그인</span>
-          </button>
+        <div className="">
+          <Link to={loginURL} className="flex sm:text-base text-sm cursor-pointer">
+            <img src="/discord.png" alt="디스코드로고" width={70} />
+            <span className="text-center h-[50px] leading-[50px]">로그인</span>
+          </Link>
         </div>
       </div>
     </header>
