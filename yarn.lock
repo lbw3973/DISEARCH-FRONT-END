@@ -524,6 +524,30 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.9.5.tgz#10491ccf4f63c814d4149e0316541476ea603602"
   integrity sha512-1q+mykKE3Vot1kaFJIDoUFv5TuW+QQVaf2FmTT9krg86pQrGStOSJJ0Zil7CFagyxDuouTepzt5Y5TVzyajOdQ==
 
+"@tanstack/query-core@5.17.19":
+  version "5.17.19"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.17.19.tgz#212515ccc7a6b913afee6b71ce3e7df2c4d85f7d"
+  integrity sha512-Lzw8FUtnLCc9Jwz0sw9xOjZB+/mCCmJev38v2wHMUl/ioXNIhnNWeMxu0NKUjIhAd62IRB3eAtvxAGDJ55UkyA==
+
+"@tanstack/query-devtools@5.17.21":
+  version "5.17.21"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.17.21.tgz#76f2b3edea24fd2a61d541bc3fd252a168af20b0"
+  integrity sha512-WWfcnNjTEqcuAS5GyKkVGkseuES6yd197MJWGImBu+MoCjWPqxSXKCCfm+utSXJauJUGm7xoMmhqCphiQdjf8w==
+
+"@tanstack/react-query-devtools@^5.17.21":
+  version "5.17.21"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.17.21.tgz#88a01eb5a76065588262d52be18b3c429202b4f2"
+  integrity sha512-Ri1AuWpN67eyPdMTlPxx1TMGNUaxTHrGv0ll0S20ZObz/Xms5wfANV3c6OX0HZTY0igudP1k5jpRLXNkd249mg==
+  dependencies:
+    "@tanstack/query-devtools" "5.17.21"
+
+"@tanstack/react-query@^5.17.19":
+  version "5.17.19"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.17.19.tgz#d6fc243faa469bb84952dd810faea47dabe389fc"
+  integrity sha512-qaQENB6/03Gj3dFZGvdmUoqeUGlGm7P1p0RmaR04Bf1Ib1T9lLGimcC9T3oCFbrx0b2ZF21ngjFZNjj9uPJMcg==
+  dependencies:
+    "@tanstack/query-core" "5.17.19"
+
 "@types/babel__core@^7.20.5":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.5.tgz#3df15f27ba85319caa07ba08d0721889bb39c017"
@@ -2188,6 +2212,7 @@ undici-types@~5.26.4:
   version "5.26.5"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
+
 universal-cookie@^7.0.0:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/universal-cookie/-/universal-cookie-7.0.1.tgz#14b7bc3d363836168f7102451ed4881bccd9e849"
