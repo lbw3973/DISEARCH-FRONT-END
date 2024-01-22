@@ -7,8 +7,16 @@ export default {
       sm: "480px",
       md: "768px",
       lg: "1024px",
+      "2xl": "1400px",
     },
-    extend: {},
+    fontFamily: {
+      Pretendard: ["Pretendard"],
+    },
+    extend: {
+      height: {
+        withoutHeader: "calc(100vh - 130px)",
+      },
+    },
   },
   plugins: [],
 };

@@ -8,3 +8,10 @@ body {
   color: #fff;
   min-width: 320px;
 }
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/PretendardVariable.woff2") format("woff");
+}
