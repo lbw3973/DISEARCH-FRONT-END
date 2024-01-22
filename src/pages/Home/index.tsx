@@ -1,4 +1,5 @@
 import ContentList from "@/components/ContentList";
+import ScrollToTop from "@/components/ScrollToTop";
 import SideBar from "@/components/SidaBar";
 import Welcome from "@/components/Welcome";
 
@@ -10,6 +11,7 @@ const Home = () => {
         <SideBar />
         <ContentList />
       </div>
+      <ScrollToTop />
     </section>
   );
 };
