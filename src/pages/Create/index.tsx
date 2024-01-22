@@ -3,7 +3,7 @@ import React from "react";
 
 const Create = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center mb-10">
       <CreateForm />
     </div>
   );
