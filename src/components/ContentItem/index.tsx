@@ -1,3 +1,6 @@
+import { useEffect, useRef, useState } from "react";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+
 interface Content {
   channelName: string;
   img: string;
@@ -7,10 +10,20 @@ interface Content {
 }
 
 const ContentItem = ({ content }: { content: Content }) => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [hasOpenButton, setHasOpenButton] = useState(false);
+  const contentBlockRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (contentBlockRef.current?.clientHeight && contentBlockRef.current?.clientHeight >= 240) {
+      setHasOpenButton(true);
+    }
+  }, []);
+
   return (
     <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[350px] p-3 w-full">
-      <div className="bg-black h-full rounded-md">
-        <div className="flex justify-between py-1 px-2 items-center bg-gray-700 rounded-t-md">
+      <div className="bg-black rounded-md">
+        <div className="flex justify-between p-3 items-center bg-gray-700 rounded-t-md">
           <h2 className="text-xl">{content.channelName}</h2>
           <span className="text-xs">1분 전</span>
         </div>
@@ -34,10 +47,21 @@ const ContentItem = ({ content }: { content: Content }) => {
           </button>
         </div>
         <div className="w-11/12 h-px bg-white mx-auto my-3"></div>
-        <div className="px-2">
-          {content.content
-            .split("\n")
-            .map((sentence, index) => (sentence === "" ? <br key={index} /> : <p key={index}>{sentence}</p>))}
+        <div className="px-2 relative pb-4">
+          <div ref={contentBlockRef} className={`${isClicked ? "h-full" : "max-h-[240px]"} overflow-hidden pb-4`}>
+            {content.content
+              .split("\n")
+              .map((sentence, index) => (sentence === "" ? <br key={index} /> : <p key={index}>{sentence}</p>))}
+          </div>
+          {hasOpenButton && (
+            <div
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 text-center w-full h-16 rounded-b-md bg-gradient-to-b from-transparent to-black`}
+            >
+              <button className={`pt-5 ${isClicked && "pb-5"}`} onClick={() => setIsClicked(!isClicked)}>
+                {isClicked ? <SlArrowUp size={30} /> : <SlArrowDown size={30} />}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
