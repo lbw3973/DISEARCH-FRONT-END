@@ -39,7 +39,7 @@ const ContentItem = ({ content }: { content: Content }) => {
                 <span
                   key={index}
                   className="bg-[#dbeafe] rounded-md px-1 text-black font-bold cursor-pointer hover:bg-[#7bcace] duration-300"
-                  onClick={() => navigate(`/search/${tag}`)}
+                  onClick={() => navigate(`/search/tag/${tag}`)}
                 >
                   {tag}
                 </span>
