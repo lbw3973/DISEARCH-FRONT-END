@@ -5,14 +5,19 @@ import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import { getCookie, removeCookie } from "@/util/cookie";
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
+import { useGetUserInfo } from "@/hooks/useGetUserInfo";
+
 const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=http://localhost:5173/OAuth2`;
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
   const [isLogined, setIsLogined] = useState(true);
   const [isProfileClicked, setIsProfileClicked] = useState(false);
   const { status, setStatus } = useUserLoginStatusStore();
+  const navigate = useNavigate();
+
+  const { userInfo } = useGetUserInfo();
+
   useEffect(() => {
     if (getCookie("Disearch_access_token")) {
       setIsLogined(true);
@@ -20,7 +25,6 @@ const Header = () => {
       setIsLogined(false);
     }
   }, [status]);
-  useEffect(() => {}, [isLogined]);
 
   const logout = () => {
     navigate("/");
@@ -53,13 +57,14 @@ const Header = () => {
         </form>
         <div>
           {isLogined ? (
-            <div className="relative">
+            <div className="relative font-Pretendard">
               <button className="flex items-center" onClick={() => setIsProfileClicked(!isProfileClicked)}>
                 <img src="/discord.png" alt="디스코드로고" width={70} />
+                <p className="mr-1">{userInfo && userInfo.username}</p>
                 {isProfileClicked ? <FaCaretUp /> : <FaCaretDown />}
               </button>
               {isProfileClicked ? (
-                <div className="absolute top-[60px] left-0 bg-gray-500 whitespace-nowrap p-2 rounded-md">
+                <div className="absolute top-[60px] right-0 bg-gray-500 whitespace-nowrap p-2 rounded-md">
                   <ul className="flex flex-col gap-1 items-center justify-center ">
                     <li
                       className="h-7 text-sm leading-7 cursor-pointer"
