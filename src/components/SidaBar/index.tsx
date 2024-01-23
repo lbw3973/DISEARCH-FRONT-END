@@ -38,10 +38,11 @@ const SideBar = () => {
               tags.map((item, index) => (
                 <li
                   key={index}
-                  className="bg-blue-100 text-black py-1 px-2 rounded-md font-bold cursor-pointer text-sm"
+                  className="bg-blue-100 text-black py-1 px-2 rounded-md cursor-pointer text-sm"
                   onClick={() => navigate(`/search/tag/${item.name}`)}
                 >
-                  {item.name}({item.count})
+                  <span className="font-bold">{item.name}</span>
+                  <span className="text-gray-600 font-bold text-xs">({item.count})</span>
                 </li>
               ))}
           </ul>
