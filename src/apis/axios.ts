@@ -2,7 +2,7 @@ import axios from "axios";
 
 const createInstance = (ContentType: string) => {
   const instance = axios.create({
-    baseURL: "https://discord.com/api/",
+    baseURL: import.meta.env.VITE_SERVER_URL,
     timeout: 10000,
     headers: {
       "Content-Type": ContentType,
