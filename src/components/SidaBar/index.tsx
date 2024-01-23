@@ -34,8 +34,8 @@ const SideBar = () => {
             인기 태그
           </h3>
           <ul className="flex gap-2 flex-wrap">
-            {tags !== undefined &&
-              tags?.map((item, index) => (
+            {tags &&
+              tags.map((item, index) => (
                 <li
                   key={index}
                   className="bg-blue-100 text-black py-1 px-2 rounded-md font-bold cursor-pointer text-sm"
