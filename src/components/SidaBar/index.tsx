@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 
 const SideBar = () => {
   const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
+  console.log(tags);
 
   const navigate = useNavigate();
   return (
@@ -33,7 +34,7 @@ const SideBar = () => {
             인기 태그
           </h3>
           <ul className="flex gap-2 flex-wrap">
-            {tags &&
+            {tags !== undefined &&
               tags?.map((item, index) => (
                 <li
                   key={index}
