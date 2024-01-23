@@ -1,5 +1,6 @@
 import { useUserGuildsStore } from "@/stores/userGuildsStore";
 import { useUserInfoStore } from "@/stores/userInfo";
+import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { IUserGuildsInfo, IUserInfo } from "@/types/discord";
 import { setCookie } from "@/util/cookie";
 import { useEffect, useState } from "react";
@@ -20,6 +21,7 @@ const OAuth2 = () => {
   const { setUserInfo } = useUserInfoStore();
   const { setUserGuildsInfo } = useUserGuildsStore();
   const navigate = useNavigate();
+  const { setStatus } = useUserLoginStatusStore();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -57,6 +59,7 @@ const OAuth2 = () => {
     setCookie("Disearch_access_token", responseData.access_token);
     await getUserInfo(responseData.access_token);
     await getUserGuildsInfo(responseData.access_token);
+    setStatus(true);
     navigate("/");
   };
 

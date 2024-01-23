@@ -63,11 +63,11 @@ const CreateForm = () => {
         <div className="w-[100px] h-[100px] flex justify-center items-center">
           <img src="/discord.png" alt="서버이미지" />
         </div>
-        <div className="relative flex items-center rounded-xl w-full bg-gray-900">
+        <div className="relative flex items-center rounded-xl w-full bg-gray-900 z-0">
           <div className="w-[340px] h-[52px] px-3 m-3 bg-[#333740] rounded-2xl border border-solid border-gray-400 focus-within:ring-2 focus-within:ring-[#2c62f6] transition-all duration-400">
             <button
               onClick={() => setIsCliked(!isClicked)}
-              className="text-[#b1b8ca] flex items-center justify-between w-full h-full z-30"
+              className="text-[#b1b8ca] flex items-center justify-between w-full h-full"
             >
               <div className="flex gap-2">
                 <img src="/discord.png" alt="" className="w-[30px] h-[24px] " />
