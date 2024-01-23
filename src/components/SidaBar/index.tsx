@@ -1,27 +1,11 @@
 import { getTags } from "@/apis/server";
 import category from "@/constants/category.json";
+import { ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 
-const mock_tag = [
-  "게임(99)",
-  "수다(98)",
-  "스팀(97)",
-  "롤(96)",
-  "소통(95)",
-  "리그오브레전드(94)",
-  "백엔드(92)",
-  "배틀그라운드(44)",
-  "발로란트(33)",
-  "스팀게임(32)",
-  "프론트엔드(31)",
-  "새벽(23)",
-  "대화(9)",
-];
-
 const SideBar = () => {
-  const { data } = useQuery({ queryKey: ["tags"], queryFn: getTags });
-  console.log(data);
+  const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
 
   const navigate = useNavigate();
   return (
@@ -49,13 +33,13 @@ const SideBar = () => {
             인기 태그
           </h3>
           <ul className="flex gap-2 flex-wrap">
-            {mock_tag.map((item, index) => (
+            {tags?.map((item, index) => (
               <li
                 key={index}
                 className="bg-blue-100 text-black py-1 px-2 rounded-md font-bold cursor-pointer text-sm"
-                onClick={() => navigate(`/search/tag/${item}`)}
+                onClick={() => navigate(`/search/tag/${item.name}`)}
               >
-                {item}
+                {item.name}({item.count})
               </li>
             ))}
           </ul>
