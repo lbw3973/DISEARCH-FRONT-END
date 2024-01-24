@@ -4,4 +4,14 @@ interface ITags {
   count: number;
 }
 
-export type { ITags };
+interface IGuild {
+  features: string[];
+  icon: string;
+  id: string;
+  name: string;
+  owner: boolean;
+  permissions: number;
+  permissions_new: string;
+}
+
+export type { ITags, IGuild };

@@ -23,6 +23,7 @@ const Header = () => {
 
   const [searchtext, setSearchText] = useState("");
   const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
+
   useEffect(() => {
     if (getCookie("Disearch_access_token")) {
       setIsLogined(true);
