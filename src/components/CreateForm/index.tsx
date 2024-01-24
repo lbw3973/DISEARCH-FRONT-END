@@ -1,24 +1,12 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import category from "@/constants/category.json";
 import { GiCancel } from "react-icons/gi";
-
-const list = ["이승용", "이병욱", "김세진", "이승용", "이병욱", "김세진"];
-
-const mock_tag = [
-  "게임",
-  "수다",
-  "스팀",
-  "롤",
-  "소통",
-  "리그오브레전드",
-  "배틀그라운드",
-  "발로란트",
-  "스팀게임",
-  "새벽",
-  "대화",
-];
+import { getTags } from "@/apis/server";
+import { ITags } from "@/types/server";
+import { useQuery } from "@tanstack/react-query";
+import { useUserGuildsStore } from "@/stores/userGuildsStore";
 
 const CreateForm = () => {
   const [isClicked, setIsCliked] = useState(false);
@@ -26,6 +14,9 @@ const CreateForm = () => {
   const [selectedCategory, setSelectedCategory] = useState("카테고리 선택");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [inputTag, setInputTag] = useState("");
+  const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
+  const { userGuildsInfo } = useUserGuildsStore();
+  const [text, setText] = useState("");
 
   const clickChannel = (name: string) => {
     setIsCliked(!isClicked);
@@ -57,14 +48,41 @@ const CreateForm = () => {
     setSelectedTags(selectedTags.filter(t => t !== tag));
   };
 
+  const saveData = () => {
+    if (selectedName === "채널선택") {
+      alert("채널선택안함");
+      return;
+    }
+    if (selectedCategory === "카테고리 선택") {
+      alert("카테고리선택안함");
+      return;
+    }
+    if (selectedTags.length === 0) {
+      alert("태그선택안함");
+      return;
+    }
+    if (text.length < 50) {
+      alert("설명안적");
+      return;
+    }
+    console.log(selectedName);
+    console.log(selectedCategory);
+    console.log(selectedTags);
+    console.log(text);
+  };
+
+  const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+
   return (
-    <div className="w-[800px] h-[1100px] bg-gray-900 rounded-xl ">
+    <div className="w-full md:w-[800px] h-full pb-10 bg-gray-900 rounded-xl ">
       <div className="flex">
         <div className="w-[100px] h-[100px] flex justify-center items-center">
           <img src="/discord.png" alt="서버이미지" />
         </div>
         <div className="relative flex items-center rounded-xl w-full bg-gray-900 z-0">
-          <div className="w-[340px] h-[52px] px-3 m-3 bg-[#333740] rounded-2xl border border-solid border-gray-400 focus-within:ring-2 focus-within:ring-[#2c62f6] transition-all duration-400">
+          <div className="md:w-[340px] w-[170px] h-[52px] px-3 m-3 bg-[#333740] rounded-2xl border border-solid border-gray-400 focus-within:ring-2 focus-within:ring-[#2c62f6] transition-all duration-400">
             <button
               onClick={() => setIsCliked(!isClicked)}
               className="text-[#b1b8ca] flex items-center justify-between w-full h-full"
@@ -77,23 +95,23 @@ const CreateForm = () => {
             </button>
           </div>
           <div
-            className={`absolute top-[84px] left-3 w-[340px] bg-[#333740] rounded-2xl p-3 transition-all duration-500 overflow-auto scrollbar-hide  ${isClicked ? "opacity-100 h-[208px]" : "opacity-0 h-0"}`}
+            className={`absolute top-[84px] left-3 md:w-[340px] w-[170px] bg-[#333740] rounded-2xl p-3 transition-all duration-500 overflow-auto scrollbar-hide  ${isClicked ? "opacity-100 h-[208px]" : "opacity-0 h-0"}`}
           >
             <ul className={`${isClicked ? "h-[208px]" : "h-0"}`}>
-              {list.map((name, index) => (
+              {userGuildsInfo.map((data, index) => (
                 <li
                   key={index}
                   className={`w[340px] scale-y-100 transition-all duration-500 leading-[52px] hover:bg-slate-500 cursor-pointer ${isClicked ? "h-[52px]" : "h-0"}`}
-                  onClick={() => clickChannel(name)}
+                  onClick={() => clickChannel(data.name)}
                 >
-                  {name}
+                  {data.name}
                 </li>
               ))}
             </ul>
           </div>
         </div>
       </div>
-      <div className="ml-[25px] mb-10 w-[750px] h border-b border-solid "></div>
+      <div className=" mb-10 md:w-[750px] w-full h border-b border-solid "></div>
       <div className="flex flex-col px-10 pb-10 gap-4">
         <div className="flex gap-5">
           <h1 className="font-bold text-xl">카테고리 </h1>
@@ -112,12 +130,12 @@ const CreateForm = () => {
         </ul>
       </div>
       <div className="flex flex-col px-10 gap-4">
-        <div className="flex gap-5 my-3">
+        <div className="flex gap-5 my-3 w-full flex-wrap ">
           <h1 className="font-bold text-xl ">태그 </h1>
           {selectedTags.map((tag, index) => (
             <h2
               key={index}
-              className="flex items-center gap-1 bg-blue-100 text-black py-1 px-2 rounded-md font-bold text-sm cursor-pointer"
+              className="flex items-center gap-1 bg-blue-100 text-black py-1 px-2 rounded-md font-bold text-sm cursor-pointer whitespace-nowrap "
               onClick={() => removeTag(tag)}
             >
               {tag}
@@ -125,12 +143,13 @@ const CreateForm = () => {
             </h2>
           ))}
         </div>
+        <h1 className="text-xs ">- 최대 5개이며, 서버에 맞는 태그를 골라주세요. </h1>
         <div>
           <input
             type="text"
             value={inputTag}
             onChange={handleInputTag}
-            className="w-[300px] h-[30px] bg-gray-900 border border-solid border-gray-400 focus-within:ring-2 focus-within:ring-[#2c62f6] rounded-md px-2"
+            className="md:w-[300px] w-[150px] h-[30px] bg-gray-900 border border-solid border-gray-400 focus-within:ring-2 focus-within:ring-[#2c62f6] rounded-md px-2"
             placeholder="태그 추가"
             onKeyPress={e => {
               if (e.key === "Enter") addInputTag();
@@ -144,27 +163,37 @@ const CreateForm = () => {
           </button>
         </div>
         <ul className="flex gap-2 flex-wrap min-w-[320px]">
-          {mock_tag.map((item, index) => (
-            <li
-              key={index}
-              className="bg-blue-100 text-black py-1 px-2 rounded-md font-bold cursor-pointer text-sm"
-              onClick={() => selectTag(item)}
-            >
-              {item}
-            </li>
-          ))}
+          {tags &&
+            tags.map((item, index) => (
+              <li
+                key={index}
+                className="bg-blue-100 text-black py-1 px-2 rounded-md font-bold cursor-pointer text-sm"
+                onClick={() => selectTag(item.name)}
+              >
+                <span className="font-bold">{item.name}</span>
+                <span className="text-gray-600 font-bold text-xs">({item.count})</span>
+              </li>
+            ))}
         </ul>
       </div>
       <div className="px-10">
         <div>
           <h1 className="font-bold text-xl my-10">설명</h1>
+          <h1 className="text-xs ">- 최소 50글자이며, 어떤 서버인지 설명을 적어주세요. </h1>
         </div>
         <div>
-          <textarea spellCheck="false" className="w-full h-[400px] max-h-[450px] bg-[#333740] px-1"></textarea>
+          <textarea
+            spellCheck="false"
+            className="w-full h-[400px] max-h-[450px] bg-[#333740] px-1"
+            onChange={changeTextArea}
+          ></textarea>
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <button className="mt-10 border border-solid px-10 py-2 rounded-lg bg-green-500 text-gray-200 font-bold text-xl">
+        <button
+          className="mt-10 border border-solid px-10 py-2 rounded-lg bg-green-500 text-gray-200 font-bold text-xl"
+          onClick={saveData}
+        >
           저장
         </button>
       </div>
