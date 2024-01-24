@@ -1,8 +1,8 @@
 interface IUserInfo {
   id: string;
   email: string;
-  name: string;
-  nickName: string;
+  global_name: string;
+  username: string;
 }
 
 interface IUserGuildsInfo {

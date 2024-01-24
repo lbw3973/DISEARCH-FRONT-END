@@ -6,6 +6,7 @@ import NotFound from "@/pages/NotFound";
 import Mypage from "@/pages/Mypage";
 import OAuth2 from "@/pages/Oauth2";
 import Search from "@/pages/Search";
+import Group from "@/pages/Search/Group";
 
 function Router() {
   return (
@@ -15,10 +16,12 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/new" element={<Create />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/OAuth2" element={<OAuth2 />} />
+          <Route path="/search/:group" element={<Search />}>
+            <Route path=":id" element={<Group />} />
+          </Route>
           <Route path="/*" element={<NotFound />} />
         </Route>
+        <Route path="/OAuth2" element={<OAuth2 />} />
       </Routes>
     </BrowserRouter>
   );

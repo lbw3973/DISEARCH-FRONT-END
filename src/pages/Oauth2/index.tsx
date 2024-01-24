@@ -1,25 +1,10 @@
-import { useUserGuildsStore } from "@/stores/userGuildsStore";
-import { useUserInfoStore } from "@/stores/userInfo";
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
-import { IUserGuildsInfo, IUserInfo } from "@/types/discord";
 import { setCookie } from "@/util/cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface IResponse {
-  features: string[];
-  icon: string;
-  id: string;
-  name: string;
-  owner: boolean;
-  permissions: number;
-  permissions_new: string;
-}
-
 const OAuth2 = () => {
   const [isMount, setIsMount] = useState(false);
-  const { setUserInfo } = useUserInfoStore();
-  const { setUserGuildsInfo } = useUserGuildsStore();
   const navigate = useNavigate();
   const { setStatus } = useUserLoginStatusStore();
 
@@ -57,38 +42,8 @@ const OAuth2 = () => {
 
     const responseData = await response.json();
     setCookie("Disearch_access_token", responseData.access_token);
-    await getUserInfo(responseData.access_token);
-    await getUserGuildsInfo(responseData.access_token);
     setStatus(true);
     navigate("/");
-  };
-
-  const getUserInfo = async (accessToken: string) => {
-    const response = await fetch("https://discord.com/api/users/@me", {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    const user = await response.json();
-    const _userInfo: IUserInfo = { id: user.id, email: user.email, name: user.global_name, nickName: user.username };
-    setUserInfo(_userInfo);
-  };
-
-  const getUserGuildsInfo = async (accessToken: string) => {
-    const reponse = await fetch("https://discord.com/api/users/@me/guilds", {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    const userGuilds = await reponse.json();
-    if (Array.isArray(userGuilds)) {
-      const _userGuildsInfo: IUserGuildsInfo[] = userGuilds.filter((userGuild: IResponse) => {
-        return userGuild.owner === true;
-      });
-      setUserGuildsInfo(_userGuildsInfo);
-    }
   };
 
   return null;

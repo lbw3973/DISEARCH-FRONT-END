@@ -1,28 +1,34 @@
-import axios from "axios";
+import { getCookie } from "@/util/cookie";
+import axios, { AxiosError } from "axios";
 
-const createInstance = (ContentType: string) => {
+const createInstance = (isServer: boolean) => {
   const instance = axios.create({
-    baseURL: import.meta.env.VITE_SERVER_URL,
+    baseURL: isServer ? import.meta.env.VITE_SERVER_URL : "https://discord.com/api",
     timeout: 10000,
-    headers: {
-      "Content-Type": ContentType,
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
-    },
+    headers: isServer
+      ? {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        }
+      : {
+          "Content-Type": "application/json",
+        },
     withCredentials: true,
   });
 
-  // instance.interceptors.request.use(
-  //   request => {
-  //     const token = getCookie("Authorization");
-  //     if (token) request.headers["Authorization"] = `${token}`;
-  //     if (!token) request.headers["Authorization"] = "";
-  //     return request;
-  //   },
-  //   (error: AxiosError) => {
-  //     return Promise.reject(error);
-  //   },
-  // );
+  instance.interceptors.request.use(
+    request => {
+      const token = getCookie("Disearch_access_token");
+      console.log(token);
+      if (token) request.headers["authorization"] = `Bearer ${token}`;
+      if (!token) request.headers["authorization"] = "";
+      return request;
+    },
+    (error: AxiosError) => {
+      return Promise.reject(error);
+    },
+  );
 
   // instance.interceptors.response.use(
   //   response => {
@@ -58,5 +64,5 @@ const createInstance = (ContentType: string) => {
 
   return instance;
 };
-export const instance = createInstance("application/json");
-export const formInstance = createInstance("multipart/form-data");
+export const instance = createInstance(true);
+export const discordInstance = createInstance(false);
