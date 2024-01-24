@@ -4,9 +4,11 @@ import { FaCaretUp } from "react-icons/fa";
 import category from "@/constants/category.json";
 import { GiCancel } from "react-icons/gi";
 import { getTags } from "@/apis/server";
-import { ITags } from "@/types/server";
+import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
-import { useUserGuildsStore } from "@/stores/userGuildsStore";
+import { getUserGuildsInfo } from "@/apis/discord";
+
+// const mock_Guilds = [{ name: "서버" }, { name: "협업파티" }];
 
 const CreateForm = () => {
   const [isClicked, setIsCliked] = useState(false);
@@ -15,8 +17,8 @@ const CreateForm = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [inputTag, setInputTag] = useState("");
   const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
-  const { userGuildsInfo } = useUserGuildsStore();
   const [text, setText] = useState("");
+  const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
 
   const clickChannel = (name: string) => {
     setIsCliked(!isClicked);
@@ -95,18 +97,19 @@ const CreateForm = () => {
             </button>
           </div>
           <div
-            className={`absolute top-[84px] left-3 md:w-[340px] w-[170px] bg-[#333740] rounded-2xl p-3 transition-all duration-500 overflow-auto scrollbar-hide  ${isClicked ? "opacity-100 h-[208px]" : "opacity-0 h-0"}`}
+            className={`absolute top-[84px] left-3 md:w-[340px] w-[170px] bg-[#333740] rounded-2xl p-3 transition-all duration-500 overflow-auto scrollbar-hide  ${isClicked ? "opacity-100 max-h-[208px]" : "opacity-0 h-0"}`}
           >
-            <ul className={`${isClicked ? "h-[208px]" : "h-0"}`}>
-              {userGuildsInfo.map((data, index) => (
-                <li
-                  key={index}
-                  className={`w[340px] scale-y-100 transition-all duration-500 leading-[52px] hover:bg-slate-500 cursor-pointer ${isClicked ? "h-[52px]" : "h-0"}`}
-                  onClick={() => clickChannel(data.name)}
-                >
-                  {data.name}
-                </li>
-              ))}
+            <ul className={`${isClicked ? "max-h-[208px]" : "h-0"}`}>
+              {guildsList &&
+                guildsList.map((data, index) => (
+                  <li
+                    key={index}
+                    className={`w[340px] scale-y-100 transition-all duration-500 leading-[52px] hover:bg-slate-500 cursor-pointer ${isClicked ? "h-[52px]" : "h-0"}`}
+                    onClick={() => clickChannel(data.name)}
+                  >
+                    {data.name}
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

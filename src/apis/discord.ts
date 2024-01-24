@@ -1,15 +1,6 @@
 import { discordInstance } from "@/apis/axios";
+import { IGuild } from "@/types/server";
 import { getCookie } from "@/util/cookie";
-
-interface IResponse {
-  features: string[];
-  icon: string;
-  id: string;
-  name: string;
-  owner: boolean;
-  permissions: number;
-  permissions_new: string;
-}
 
 export const getUserInfo = async () => {
   console.log(getCookie("Disearch_access_token"));
@@ -25,7 +16,7 @@ export const getUserGuildsInfo = async () => {
     return null;
   }
   const res = await discordInstance.get("/users/@me/guilds");
-  return res.data.filter((data: IResponse) => {
+  return res.data.filter((data: IGuild) => {
     return data.owner === true;
   });
 };
