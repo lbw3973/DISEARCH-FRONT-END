@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import { getCookie, removeCookie } from "@/util/cookie";
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
+import { getTags } from "@/apis/server";
+import { ITags } from "@/types/server";
+import { useQuery } from "@tanstack/react-query";
 const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=http://localhost:5173/OAuth2`;
 
 const Header = () => {
@@ -13,6 +16,8 @@ const Header = () => {
   const [isLogined, setIsLogined] = useState(true);
   const [isProfileClicked, setIsProfileClicked] = useState(false);
   const { status, setStatus } = useUserLoginStatusStore();
+  const [searchtext, setSearchText] = useState("");
+  const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
   useEffect(() => {
     if (getCookie("Disearch_access_token")) {
       setIsLogined(true);
@@ -30,13 +35,23 @@ const Header = () => {
     setStatus(false);
   };
 
+  const changeText = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+    console.log(searchtext);
+  };
+
+  const searchData = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(tags);
+  };
+
   return (
     <header className=" bg-[#313338] w-full h-[100px] fixed shadow-md z-20">
       <div className="flex items-center justify-between w-full h-[90px] px-5">
         <div className="w-[170px] cursor-pointer" onClick={() => navigate("/")}>
           <img src="/logo.png" alt="로고" />
         </div>
-        <form className="relative lg:w-[440px]">
+        <form className="relative lg:w-[440px]" onSubmit={searchData}>
           <div className="flex h-10">
             {isHovered ? <IoIosSearch className="absolute top-1/2 left-2 -translate-y-1/2 z-10" size={20} /> : ""}
             <input
@@ -45,6 +60,7 @@ const Header = () => {
               placeholder="검색"
               onFocus={() => setIsHovered(true)}
               onBlur={() => setIsHovered(false)}
+              onChange={changeText}
             ></input>
             <button className="bg-[#282b30] text-white border border-[#424549] border-l-0 h-full rounded-l-none rounded-r-xl w-1/6 flex items-center justify-center">
               <IoIosSearch className="z-10" size={20} />
