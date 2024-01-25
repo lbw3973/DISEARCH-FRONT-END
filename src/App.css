@@ -4,9 +4,21 @@
 
 html,
 body {
-  background-color: #313338;
+  background-color: rgba(49, 52, 57);
   color: #fff;
   min-width: 320px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#root {
+  background-image: url(/backGround.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 @font-face {
