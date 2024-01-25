@@ -15,10 +15,10 @@ body {
 }
 
 #root {
-  /* background-image: url(/backGround.png);
+  background-image: url(/backGround.png);
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed; */
+  background-attachment: fixed;
 }
 
 @font-face {
