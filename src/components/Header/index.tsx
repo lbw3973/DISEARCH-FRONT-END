@@ -51,8 +51,8 @@ const Header = () => {
   };
 
   return (
-    <header className=" bg-[#313338] w-full h-[100px] fixed shadow-md z-20">
-      <div className="flex items-center justify-between w-full h-[90px] px-10">
+    <header className=" bg-[#313338] w-full h-[100px] fixed shadow-md z-20 flex items-center">
+      <div className="flex items-center justify-between w-full md:px-10 p-0">
         <div className="w-[170px] cursor-pointer" onClick={() => navigate("/")}>
           <img src="/DISEARCH.gif" alt="로고" className="w-[150px]" />
         </div>

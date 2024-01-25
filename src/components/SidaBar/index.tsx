@@ -19,7 +19,7 @@ const SideBar = () => {
             {category.category.map((item, index) => (
               <li
                 key={index}
-                className="bg-[#424549] py-1 px-2 rounded-md font-bold cursor-pointer text-sm text-center hover:bg-[#777] duration-300"
+                className="bg-[#424549] py-1 px-2 rounded-md font-bold cursor-pointer text-sm text-center hover:bg-[#777] hover:scale-110 duration-300"
                 onClick={() => navigate(`/search/category/${item}`)}
               >
                 {item}
@@ -37,7 +37,7 @@ const SideBar = () => {
               tags.map((item, index) => (
                 <li
                   key={index}
-                  className="bg-blue-100 text-black py-1 px-2 rounded-md cursor-pointer text-sm hover:bg-[#7bcace] duration-300"
+                  className="bg-blue-100 text-black py-1 px-2 rounded-md cursor-pointer text-sm hover:bg-[#7bcace] hover:scale-110 duration-300"
                   onClick={() => navigate(`/search/tag/${item.name}`)}
                 >
                   <span className="font-bold">{item.name}</span>

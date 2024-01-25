@@ -38,7 +38,7 @@ const ContentItem = ({ content }: { content: Content }) => {
               {content.tag.map((tag, index) => (
                 <span
                   key={index}
-                  className="bg-[#dbeafe] rounded-md px-1 text-black font-bold cursor-pointer hover:bg-[#7bcace] duration-300"
+                  className="bg-[#dbeafe] rounded-md px-1 text-black font-bold cursor-pointer hover:bg-[#7bcace] hover:scale-110 duration-300"
                   onClick={() => navigate(`/search/tag/${tag}`)}
                 >
                   {tag}
