@@ -180,7 +180,7 @@ const CreateForm = () => {
         </ul>
       </div>
       <div className="px-10">
-        <div>
+        <div className="mb-1">
           <h1 className="font-bold text-xl my-10">설명</h1>
           <h1 className="text-xs ">- 최소 50글자이며, 어떤 서버인지 설명을 적어주세요. </h1>
         </div>

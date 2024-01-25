@@ -48,7 +48,7 @@ const Welcome = () => {
           </div>
         </button>
       </Link>
-      <div className="text-center md:text-2xl h-20 mt-10 flex flex-col gap-5 text-base break-keep">
+      <div className="text-center md:text-2xl h-20 mt-10 flex flex-col gap-5 text-base break-keep drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,1)]">
         <Typing
           Tag="h2"
           preDelay={500}

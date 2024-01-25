@@ -56,7 +56,7 @@ const Header = () => {
         <div className="w-[170px] cursor-pointer" onClick={() => navigate("/")}>
           <img src="/DISEARCH.gif" alt="로고" className="w-[150px]" />
         </div>
-        <form className="relative lg:w-[440px]" onSubmit={searchData}>
+        <form className="relative lg:w-[440px] sm:w-[330px] xs:w-[240px]" onSubmit={searchData}>
           <div className="flex h-12">
             {isHovered ? <IoIosSearch className="absolute top-1/2 left-2 -translate-y-1/2 z-10" size={20} /> : ""}
             <input
@@ -77,8 +77,12 @@ const Header = () => {
             <div className="relative font-Pretendard">
               <button className="flex items-center" onClick={() => setIsProfileClicked(!isProfileClicked)}>
                 <img src="/discord.png" alt="디스코드로고" width={70} />
-                <p className="mr-1">{userInfo && userInfo.username}</p>
-                {isProfileClicked ? <FaCaretUp /> : <FaCaretDown />}
+                <p className="mr-1 hidden md:block">{userInfo && userInfo.username}</p>
+                {isProfileClicked ? (
+                  <FaCaretUp className="hidden md:block" />
+                ) : (
+                  <FaCaretDown className="hidden md:block" />
+                )}
               </button>
               {isProfileClicked ? (
                 <div className="absolute top-[60px] right-0 bg-gray-500 whitespace-nowrap p-2 rounded-md">

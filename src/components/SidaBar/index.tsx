@@ -10,16 +10,14 @@ const SideBar = () => {
   const navigate = useNavigate();
   return (
     <aside className="relative md:max-w-[300px] md:min-w-[250px] pt-3 max-w-[50%] min-w-[350px]">
-      <div className="w-[90%] bg-[#7289da] p-3 text-white font-Pretendard rounded-lg sticky top-40 mx-auto">
-        <div>
-          <h3 className="text-xl text-[#242424] font-bold text-center mb-3 after:block after:w-1/5 after:h-px after:bg-[rgba(0,0,0,0.2)] after:mx-auto">
-            카테고리
-          </h3>
-          <ul className="flex gap-2 flex-wrap">
+      <div className="w-[90%] bg-[rgba(0,0,0,0.5)] text-white font-Pretendard rounded-lg sticky top-40 mx-auto">
+        <div className="pb-3">
+          <h3 className="text-lg text-white px-20 py-2 bg-[#374151] rounded-t-lg font-bold text-center">카테고리</h3>
+          <ul className="flex gap-2 flex-wrap p-3">
             {category.category.map((item, index) => (
               <li
                 key={index}
-                className="bg-[#424549] py-1 px-2 rounded-md font-bold cursor-pointer text-sm text-center hover:bg-[#777] hover:scale-110 duration-300"
+                className="bg-[#ebcce7] text-black py-1 px-2 rounded-md font-bold cursor-pointer text-sm text-center hover:bg-[#e9b3e1] hover:scale-110 duration-300"
                 onClick={() => navigate(`/search/category/${item}`)}
               >
                 {item}
@@ -27,17 +25,15 @@ const SideBar = () => {
             ))}
           </ul>
         </div>
-        <div className="w-11/12 h-px bg-white mx-auto my-3"></div>
-        <div>
-          <h3 className="text-xl text-[#242424] font-bold text-center mb-3 after:block after:w-1/5 after:h-px after:bg-[rgba(0,0,0,0.2)] after:mx-auto">
-            인기 태그
-          </h3>
-          <ul className="flex gap-2 flex-wrap">
+        {/* <div className="w-11/12 h-px bg-[#ccc] mx-auto my-3"></div> */}
+        <div className="pb-3">
+          <h3 className="text-lg text-white px-20 py-2 bg-[#374151] font-bold text-center">인기 태그</h3>
+          <ul className="flex gap-2 flex-wrap p-3">
             {tags &&
               tags.map((item, index) => (
                 <li
                   key={index}
-                  className="bg-blue-100 text-black py-1 px-2 rounded-md cursor-pointer text-sm hover:bg-[#7bcace] hover:scale-110 duration-300"
+                  className="bg-[#f8b5a5] text-black py-1 px-2 rounded-md cursor-pointer text-sm hover:bg-[#ee9b87] hover:scale-110 duration-300"
                   onClick={() => navigate(`/search/tag/${item.name}`)}
                 >
                   <span className="font-bold">{item.name}</span>
