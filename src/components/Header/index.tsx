@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
@@ -6,23 +6,17 @@ import { FaCaretUp } from "react-icons/fa";
 import { getCookie, removeCookie } from "@/util/cookie";
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
-
-import { getTags } from "@/apis/server";
-import { ITags } from "@/types/server";
-import { useQuery } from "@tanstack/react-query";
 const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=http://localhost:5173/OAuth2`;
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isLogined, setIsLogined] = useState(true);
   const [isProfileClicked, setIsProfileClicked] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { status, setStatus } = useUserLoginStatusStore();
   const navigate = useNavigate();
 
   const { userInfo } = useGetUserInfo();
-
-  const [searchtext, setSearchText] = useState("");
-  const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
 
   useEffect(() => {
     if (getCookie("Disearch_access_token")) {
@@ -40,14 +34,9 @@ const Header = () => {
     setStatus(false);
   };
 
-  const changeText = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-    console.log(searchtext);
-  };
-
   const searchData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(tags);
+    console.log(inputRef.current?.value);
   };
 
   return (
@@ -62,10 +51,10 @@ const Header = () => {
             <input
               type="text"
               className={`relative  w-full h-full rounded-l-xl bg-[#313338] border border-[#5b6066] text-white  outline-1 outline-gray-900 ${isHovered ? "pl-10" : "pl-3"}`}
-              placeholder="검색"
+              placeholder="태그 검색"
               onFocus={() => setIsHovered(true)}
               onBlur={() => setIsHovered(false)}
-              onChange={changeText}
+              ref={inputRef}
             ></input>
             <button className="bg-[#282b30] text-white border border-[#5b6066] border-l-0 h-full rounded-l-none rounded-r-xl w-1/6 flex items-center justify-center">
               <IoIosSearch className="z-10" size={20} />

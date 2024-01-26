@@ -27,8 +27,8 @@ const ContentItem = ({ content, hasJoinButton }: { content: Content; hasJoinButt
     <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[350px] p-3 w-full">
       <div className="bg-[rgba(0,0,0,0.9)] rounded-md">
         <div className="flex justify-between p-3 items-center bg-gray-700 rounded-t-md">
-          <h2 className="text-xl">{content.channelName}</h2>
-          <span className="text-xs">1분 전</span>
+          <h2 className="overflow-hidden md:text-xl text-ellipsis whitespace-nowrap">{content.channelName}</h2>
+          <span className="text-xs whitespace-nowrap">30분 전</span>
         </div>
         <div className="flex justify-between items-center gap-4 pr-2">
           <img src="https://picsum.photos/66/66" alt="Server_Icon" className="w-[66px] h-[66px]" />
