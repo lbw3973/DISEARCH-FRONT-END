@@ -10,7 +10,7 @@ interface Content {
   content: string;
 }
 
-const ContentItem = ({ content }: { content: Content }) => {
+const ContentItem = ({ content, hasJoinButton }: { content: Content; hasJoinButton?: boolean }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [hasOpenButton, setHasOpenButton] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -37,17 +37,19 @@ const ContentItem = ({ content }: { content: Content }) => {
               <span className="bg-[#ebcce7] rounded-md px-2 py-1 text-black font-bold text-sm h-7">
                 {content.category}
               </span>
-              <button className="bg-[#7079d6] text-white JoinButton font-bold h-1/2 whitespace-nowrap rounded-md p-2 hover:bg-[#5865f2] duration-300">
-                <div>
-                  <span>서</span>
-                  <span>버</span>
-                  <span>&nbsp;</span>
-                  <span>참</span>
-                  <span>가</span>
-                  <span>하</span>
-                  <span>기</span>
-                </div>
-              </button>
+              {hasJoinButton && (
+                <button className="bg-[#7079d6] text-white JoinButton font-bold h-1/2 whitespace-nowrap rounded-md p-2 hover:bg-[#5865f2] duration-300">
+                  <div>
+                    <span>서</span>
+                    <span>버</span>
+                    <span>&nbsp;</span>
+                    <span>참</span>
+                    <span>가</span>
+                    <span>하</span>
+                    <span>기</span>
+                  </div>
+                </button>
+              )}
             </div>
             <div className="flex gap-2 flex-wrap">
               {content.tag.map((tag, index) => (

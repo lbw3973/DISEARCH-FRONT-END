@@ -55,7 +55,7 @@ const ContentList = () => {
   return (
     <div className="flex flex-wrap mx-auto px-4 font-Pretendard justify-center md:justify-normal w-full">
       {mock_Contents.map((content, index) => (
-        <ContentItem content={content} key={index} />
+        <ContentItem content={content} key={index} hasJoinButton />
       ))}
     </div>
   );
