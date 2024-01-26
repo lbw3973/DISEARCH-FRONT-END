@@ -10,7 +10,7 @@ interface Content {
   content: string;
 }
 
-const ContentItem = ({ content }: { content: Content }) => {
+const ContentItem = ({ content, hasJoinButton }: { content: Content; hasJoinButton?: boolean }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [hasOpenButton, setHasOpenButton] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -27,8 +27,8 @@ const ContentItem = ({ content }: { content: Content }) => {
     <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[350px] p-3 w-full">
       <div className="bg-[rgba(0,0,0,0.9)] rounded-md">
         <div className="flex justify-between p-3 items-center bg-gray-700 rounded-t-md">
-          <h2 className="text-xl">{content.channelName}</h2>
-          <span className="text-xs">1분 전</span>
+          <h2 className="overflow-hidden md:text-xl text-ellipsis whitespace-nowrap">{content.channelName}</h2>
+          <span className="text-xs whitespace-nowrap">30분 전</span>
         </div>
         <div className="flex justify-between items-center gap-4 pr-2">
           <img src="https://picsum.photos/66/66" alt="Server_Icon" className="w-[66px] h-[66px]" />
@@ -37,17 +37,19 @@ const ContentItem = ({ content }: { content: Content }) => {
               <span className="bg-[#ebcce7] rounded-md px-2 py-1 text-black font-bold text-sm h-7">
                 {content.category}
               </span>
-              <button className="bg-[#7079d6] text-white JoinButton font-bold h-1/2 whitespace-nowrap rounded-md p-2 hover:bg-[#5865f2] duration-300">
-                <div>
-                  <span>서</span>
-                  <span>버</span>
-                  <span>&nbsp;</span>
-                  <span>참</span>
-                  <span>가</span>
-                  <span>하</span>
-                  <span>기</span>
-                </div>
-              </button>
+              {hasJoinButton && (
+                <button className="bg-[#7079d6] text-white JoinButton font-bold h-1/2 whitespace-nowrap rounded-md p-2 hover:bg-[#5865f2] duration-300">
+                  <div>
+                    <span>서</span>
+                    <span>버</span>
+                    <span>&nbsp;</span>
+                    <span>참</span>
+                    <span>가</span>
+                    <span>하</span>
+                    <span>기</span>
+                  </div>
+                </button>
+              )}
             </div>
             <div className="flex gap-2 flex-wrap">
               {content.tag.map((tag, index) => (
