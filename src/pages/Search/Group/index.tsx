@@ -5,7 +5,7 @@ const Group = () => {
   const { group, id } = useParams();
   return (
     <>
-      <div className="text-center my-20">
+      <div className="text-center my-20 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,1)]">
         <span
           className={`${group === "category" ? "bg-[#424549] text-white" : "bg-[#dbeafe] text-black"} px-2 py-1 rounded-lg font-bold mr-1`}
         >
