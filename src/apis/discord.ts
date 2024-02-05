@@ -3,7 +3,6 @@ import { IGuild } from "@/types/server";
 import { getCookie } from "@/util/cookie";
 
 export const getUserInfo = async () => {
-  console.log(getCookie("Disearch_access_token"));
   if (!getCookie("Disearch_access_token")) {
     return null;
   }

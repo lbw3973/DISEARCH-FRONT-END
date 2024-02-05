@@ -21,8 +21,6 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContent; hasJoinBut
     // window.open()
     // const res = await testGuild();
     // console.log(res);
-
-    console.log(getPostingTime(content.createdAt));
   };
 
   return (

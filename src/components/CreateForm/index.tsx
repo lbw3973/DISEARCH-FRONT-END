@@ -23,8 +23,6 @@ const CreateForm = () => {
   const [text, setText] = useState("");
   const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
 
-  console.log(guildsList);
-
   const clickChannel = (name: IChannelInfo) => {
     setIsCliked(!isClicked);
     setSelectedName(name);
@@ -72,7 +70,6 @@ const CreateForm = () => {
       alert("설명을 최소 50자 이상 적어주세요.");
       return;
     }
-    console.log(selectedName);
 
     const res = await postBoard({
       serverId: selectedName.serverId,
