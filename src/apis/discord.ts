@@ -1,4 +1,4 @@
-import { discordInstance } from "@/apis/axios";
+import { discordBotInstance, discordInstance } from "@/apis/axios";
 import { IGuild } from "@/types/server";
 import { getCookie } from "@/util/cookie";
 
@@ -19,4 +19,9 @@ export const getUserGuildsInfo = async () => {
   return res.data.filter((data: IGuild) => {
     return data.owner === true;
   });
+};
+
+export const getGuildCode = async (id: string) => {
+  const res = await discordBotInstance.get(`/guilds/${id}/templates?permissions=1`);
+  return res;
 };

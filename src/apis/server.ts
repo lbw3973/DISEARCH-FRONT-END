@@ -10,3 +10,7 @@ export const postBoard = async (data: IPostBoard) => {
   const res = await instance.post("/create", data);
   return res;
 };
+export const getBoards = async () => {
+  const res = await instance.get("/main/board");
+  return res.data.data.list;
+};

@@ -22,4 +22,12 @@ interface IPostBoard {
   content: string;
 }
 
-export type { ITags, IGuild, IPostBoard };
+interface IContent {
+  serverName: string;
+  img: string;
+  category: string;
+  tag: string[];
+  content: string;
+}
+
+export type { ITags, IGuild, IPostBoard, IContent };
