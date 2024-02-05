@@ -1,16 +1,9 @@
+import { IContent } from "@/types/server";
 import { useEffect, useRef, useState } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 
-interface Content {
-  channelName: string;
-  img: string;
-  category: string;
-  tag: string[];
-  content: string;
-}
-
-const ContentItem = ({ content, hasJoinButton }: { content: Content; hasJoinButton?: boolean }) => {
+const ContentItem = ({ content, hasJoinButton }: { content: IContent; hasJoinButton?: boolean }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [hasOpenButton, setHasOpenButton] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -27,7 +20,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: Content; hasJoinButt
     <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[350px] p-3 w-full">
       <div className="bg-[rgba(0,0,0,0.9)] rounded-md">
         <div className="flex justify-between p-3 items-center bg-gray-700 rounded-t-md">
-          <h2 className="overflow-hidden md:text-xl text-ellipsis whitespace-nowrap">{content.channelName}</h2>
+          <h2 className="overflow-hidden md:text-xl text-ellipsis whitespace-nowrap">{content.serverName}</h2>
           <span className="text-xs whitespace-nowrap">30분 전</span>
         </div>
         <div className="flex justify-between items-center gap-4 pr-2">

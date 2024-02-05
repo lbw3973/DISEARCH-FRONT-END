@@ -8,8 +8,6 @@ import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { getUserGuildsInfo } from "@/apis/discord";
 
-// const mock_Guilds = [{ name: "서버" }, { name: "협업파티" }];
-
 interface IChannelInfo {
   serverId: string;
   serverName: string;
@@ -84,6 +82,9 @@ const CreateForm = () => {
       content: text,
     });
     console.log(res);
+
+    // const res = await getGuildCode(selectedName.serverId);
+    // console.log(res);
   };
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
