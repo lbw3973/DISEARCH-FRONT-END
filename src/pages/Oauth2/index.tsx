@@ -13,12 +13,10 @@ const OAuth2 = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
     const error = urlParams.get("error");
-    const isDev = import.meta.env.VITE_DISCORD_REDIRECT_URL === "http://localhost:5173/OAuth2";
+    // const isDev = import.meta.env.VITE_DISCORD_REDIRECT_URL === "http://localhost:5173/OAuth2";
 
     if (!isMount) {
-      if (isDev) {
-        isMount = true;
-      }
+      isMount = true;
       if (code) {
         getAccessToken(code);
       } else if (error) {
@@ -33,7 +31,7 @@ const OAuth2 = () => {
     data.append("client_secret", import.meta.env.VITE_DISCORD_CLIENT_SECRET);
     data.append("grant_type", "authorization_code");
     data.append("code", code);
-    data.append("redirect_uri", "http://localhost:5173/OAuth2");
+    data.append("redirect_uri", import.meta.env.VITE_DISCORD_REDIRECT_URL);
     data.append("scope", "identify, email");
 
     const response = await fetch("https://discord.com/api/oauth2/token", {
