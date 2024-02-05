@@ -3,10 +3,10 @@ import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import category from "@/constants/category.json";
 import { GiCancel } from "react-icons/gi";
-import { getTags } from "@/apis/server";
+import { getTags, postBoard } from "@/apis/server";
 import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
-import { getGuildCode, getUserGuildsInfo } from "@/apis/discord";
+import { getUserGuildsInfo } from "@/apis/discord";
 
 interface IChannelInfo {
   serverId: string;
@@ -74,17 +74,17 @@ const CreateForm = () => {
     }
     console.log(selectedName);
 
-    // const res = await postBoard({
-    //   serverId: selectedName.serverId,
-    //   serverName: selectedName.serverName,
-    //   category: selectedCategory,
-    //   tag: selectedTags,
-    //   content: text,
-    // });
-    // console.log(res);
-
-    const res = await getGuildCode(selectedName.serverId);
+    const res = await postBoard({
+      serverId: selectedName.serverId,
+      serverName: selectedName.serverName,
+      category: selectedCategory,
+      tag: selectedTags,
+      content: text,
+    });
     console.log(res);
+
+    // const res = await getGuildCode(selectedName.serverId);
+    // console.log(res);
   };
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {

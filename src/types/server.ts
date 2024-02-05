@@ -28,6 +28,7 @@ interface IContent {
   category: string;
   tag: string[];
   content: string;
+  createdAt: string;
 }
 
 export type { ITags, IGuild, IPostBoard, IContent };
