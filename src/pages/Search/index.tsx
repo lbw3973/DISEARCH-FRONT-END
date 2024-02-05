@@ -1,3 +1,4 @@
+import ScrollToTop from "@/components/ScrollToTop";
 import { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
@@ -14,6 +15,7 @@ const Search = () => {
   return (
     <div className="w-3/4 mx-auto">
       <Outlet />
+      <ScrollToTop />
     </div>
   );
 };
