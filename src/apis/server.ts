@@ -11,7 +11,6 @@ export const postBoard = async (data: IPostBoard) => {
   return res;
 };
 export const getBoards = async (searchType?: string, searchParam?: string) => {
-  console.log(searchType, searchParam);
   let endPoint = "/main/board";
   if (searchType) {
     endPoint += `?${searchType}=${searchParam}`;
