@@ -13,9 +13,12 @@ const OAuth2 = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
     const error = urlParams.get("error");
+    const isDev = import.meta.env.VITE_DISCORD_REDIRECT_URL === "http://localhost:5173/OAuth2";
 
     if (!isMount) {
-      isMount = true;
+      if (isDev) {
+        isMount = true;
+      }
       if (code) {
         getAccessToken(code);
       } else if (error) {
