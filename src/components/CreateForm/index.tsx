@@ -3,16 +3,21 @@ import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import category from "@/constants/category.json";
 import { GiCancel } from "react-icons/gi";
-import { getTags } from "@/apis/server";
+import { getTags, postBoard } from "@/apis/server";
 import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { getUserGuildsInfo } from "@/apis/discord";
 
 // const mock_Guilds = [{ name: "서버" }, { name: "협업파티" }];
 
+interface IChannelInfo {
+  serverId: string;
+  serverName: string;
+}
+
 const CreateForm = () => {
   const [isClicked, setIsCliked] = useState(false);
-  const [selectedName, setSelectedName] = useState("채널선택");
+  const [selectedName, setSelectedName] = useState<IChannelInfo>({ serverId: "", serverName: "채널선택" });
   const [selectedCategory, setSelectedCategory] = useState("카테고리 선택");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [inputTag, setInputTag] = useState("");
@@ -20,7 +25,9 @@ const CreateForm = () => {
   const [text, setText] = useState("");
   const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
 
-  const clickChannel = (name: string) => {
+  console.log(guildsList);
+
+  const clickChannel = (name: IChannelInfo) => {
     setIsCliked(!isClicked);
     setSelectedName(name);
   };
@@ -50,27 +57,33 @@ const CreateForm = () => {
     setSelectedTags(selectedTags.filter(t => t !== tag));
   };
 
-  const saveData = () => {
-    if (selectedName === "채널선택") {
-      alert("채널선택안함");
+  const saveData = async () => {
+    if (selectedName.serverName === "채널선택") {
+      alert("채널을 선택해주세요.");
       return;
     }
     if (selectedCategory === "카테고리 선택") {
-      alert("카테고리선택안함");
+      alert("카테고리를 선택해주세요.");
       return;
     }
     if (selectedTags.length === 0) {
-      alert("태그선택안함");
+      alert("태그를 최소 1개이상 선택해주세요.");
       return;
     }
     if (text.length < 50) {
-      alert("설명안적");
+      alert("설명을 최소 50자 이상 적어주세요.");
       return;
     }
     console.log(selectedName);
-    console.log(selectedCategory);
-    console.log(selectedTags);
-    console.log(text);
+
+    const res = await postBoard({
+      serverId: selectedName.serverId,
+      serverName: selectedName.serverName,
+      category: selectedCategory,
+      tag: selectedTags,
+      content: text,
+    });
+    console.log(res);
   };
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -91,7 +104,7 @@ const CreateForm = () => {
             >
               <div className="flex gap-2">
                 <img src="/discord.png" alt="" className="w-[30px] h-[24px] " />
-                <h1>{selectedName}</h1>
+                <h1>{selectedName.serverName}</h1>
               </div>
               {isClicked ? <FaCaretUp /> : <FaCaretDown />}
             </button>
@@ -105,7 +118,7 @@ const CreateForm = () => {
                   <li
                     key={index}
                     className={`w[340px] scale-y-100 transition-all duration-500 leading-[52px] hover:bg-slate-500 cursor-pointer ${isClicked ? "h-[52px]" : "h-0"}`}
-                    onClick={() => clickChannel(data.name)}
+                    onClick={() => clickChannel({ serverId: data.id, serverName: data.name })}
                   >
                     {data.name}
                   </li>

@@ -1,10 +1,11 @@
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { setCookie } from "@/util/cookie";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+let isMount = false;
+
 const OAuth2 = () => {
-  const [isMount, setIsMount] = useState(false);
   const navigate = useNavigate();
   const { setStatus } = useUserLoginStatusStore();
 
@@ -14,7 +15,7 @@ const OAuth2 = () => {
     const error = urlParams.get("error");
 
     if (!isMount) {
-      setIsMount(true);
+      isMount = true;
       if (code) {
         getAccessToken(code);
       } else if (error) {
