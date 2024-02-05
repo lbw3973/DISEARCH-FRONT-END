@@ -13,7 +13,7 @@ const createInstance = (isServer: boolean, isBot?: boolean) => {
         }
       : isBot
         ? {
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
             "Access-Control-Allow-Origin": "*",
           }
         : {
