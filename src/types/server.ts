@@ -14,4 +14,12 @@ interface IGuild {
   permissions_new: string;
 }
 
-export type { ITags, IGuild };
+interface IPostBoard {
+  serverId: string;
+  serverName: string;
+  category: string;
+  tag: string[];
+  content: string;
+}
+
+export type { ITags, IGuild, IPostBoard };
