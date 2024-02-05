@@ -25,3 +25,8 @@ export const getGuildCode = async (id: string) => {
   const res = await discordBotInstance.get(`/guilds/${id}/templates?permissions=1`);
   return res;
 };
+
+export const testGuild = async () => {
+  const res = await discordBotInstance.get("/guilds/699251850939203600/invites");
+  return res;
+};
