@@ -9,8 +9,6 @@ const ContentList = ({ searchType, searchParam }: { searchType?: string; searchP
     queryFn: () => getBoards(searchType, searchParam),
   });
 
-  console.log(isLoading);
-
   return (
     <>
       {isLoading && (
