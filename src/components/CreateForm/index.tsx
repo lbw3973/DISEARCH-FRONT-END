@@ -7,6 +7,7 @@ import { getTags, postBoard } from "@/apis/server";
 import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { getUserGuildsInfo } from "@/apis/discord";
+import { useNavigate } from "react-router-dom";
 
 interface IChannelInfo {
   serverId: string;
@@ -22,6 +23,7 @@ const CreateForm = () => {
   const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
   const [text, setText] = useState("");
   const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
+  const navigate = useNavigate();
 
   const clickChannel = (name: IChannelInfo) => {
     setIsCliked(!isClicked);
@@ -79,6 +81,12 @@ const CreateForm = () => {
       content: text,
     });
     console.log(res);
+    if (res.status === 200) {
+      alert("서버가 추가되었습니다!");
+      navigate("/");
+    } else {
+      alert("에러가 발생했습니다.\n다시 시도해주세요.");
+    }
 
     // const res = await getGuildCode(selectedName.serverId);
     // console.log(res);
