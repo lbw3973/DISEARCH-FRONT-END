@@ -69,7 +69,10 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContent; hasJoinBut
         </div>
         <div className="w-11/12 h-px bg-white mx-auto my-3"></div>
         <div className="px-2 relative pb-4">
-          <div ref={contentBlockRef} className={`${isClicked ? "h-full" : "max-h-[240px]"} overflow-hidden pb-4`}>
+          <div
+            ref={contentBlockRef}
+            className={`${isClicked ? "h-full" : "max-h-[240px]"} overflow-hidden pb-4 select-text selection:bg-white selection:text-black`}
+          >
             {content.content
               .split("\n")
               .map((sentence, index) => (sentence === "" ? <br key={index} /> : <p key={index}>{sentence}</p>))}
