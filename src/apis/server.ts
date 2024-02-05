@@ -10,7 +10,13 @@ export const postBoard = async (data: IPostBoard) => {
   const res = await instance.post("/create", data);
   return res;
 };
-export const getBoards = async () => {
-  const res = await instance.get("/main/board");
+export const getBoards = async (searchType?: string, searchParam?: string) => {
+  console.log(searchType, searchParam);
+  let endPoint = "/main/board";
+  if (searchType) {
+    endPoint += `?${searchType}=${searchParam}`;
+  }
+
+  const res = await instance.get(endPoint);
   return res.data.data.list;
 };

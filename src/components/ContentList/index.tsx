@@ -3,8 +3,11 @@ import ContentItem from "../ContentItem";
 import { getBoards } from "@/apis/server";
 import { IContent } from "@/types/server";
 
-const ContentList = () => {
-  const { data: boards } = useQuery<IContent[]>({ queryKey: ["boards"], queryFn: getBoards });
+const ContentList = ({ searchType, searchParam }: { searchType?: string; searchParam?: string }) => {
+  const { data: boards } = useQuery<IContent[]>({
+    queryKey: ["boards", searchType, searchParam],
+    queryFn: () => getBoards(searchType, searchParam),
+  });
 
   return (
     <div className="flex flex-wrap mx-auto px-4 font-Pretendard justify-center md:justify-normal w-full">

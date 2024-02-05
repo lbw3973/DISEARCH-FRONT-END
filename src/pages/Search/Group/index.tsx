@@ -1,21 +1,30 @@
 import ContentList from "@/components/ContentList";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Group = () => {
-  const { group, id } = useParams();
+const Type = () => {
+  const { type, param } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!param) {
+      navigate("/notfound");
+    }
+  }, []);
+
   return (
     <>
       <div className="text-center my-20 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,1)]">
         <span
-          className={`${group === "category" ? "bg-[#424549] text-white" : "bg-[#dbeafe] text-black"} px-2 py-1 rounded-lg font-bold mr-1`}
+          className={`${type === "category" ? "bg-[#424549] text-white" : "bg-[#dbeafe] text-black"} px-2 py-1 rounded-lg font-bold mr-1`}
         >
-          {id}
+          {param}
         </span>
-        {group === "category" ? "카테고리" : "태그"}로 검색한 결과입니다.
+        {type === "category" ? "카테고리" : "태그"}로 검색한 결과입니다.
       </div>
-      <ContentList />
+      <ContentList searchType={type} searchParam={param} />
     </>
   );
 };
 
-export default Group;
+export default Type;

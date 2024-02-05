@@ -36,7 +36,7 @@ const Header = () => {
 
   const searchData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(inputRef.current?.value);
+    navigate(`/search/tag/${inputRef.current?.value}`);
   };
 
   return (
