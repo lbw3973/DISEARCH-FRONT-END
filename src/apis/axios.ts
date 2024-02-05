@@ -11,9 +11,14 @@ const createInstance = (isServer: boolean, isBot?: boolean) => {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Credentials": true,
         }
-      : {
-          "Content-Type": "application/json",
-        },
+      : isBot
+        ? {
+            "Content-Type": "application/json",
+          }
+        : {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
     withCredentials: true,
   });
 
