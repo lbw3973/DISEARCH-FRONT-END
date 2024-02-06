@@ -22,13 +22,24 @@ interface IPostBoard {
   content: string;
 }
 
-interface IContent {
+interface IContentItem {
   serverName: string;
-  img: string;
+  serverId: number;
+  iconId: string;
   category: string;
   tag: string[];
   content: string;
   createdAt: string;
 }
 
-export type { ITags, IGuild, IPostBoard, IContent };
+interface IContent {
+  list: IContentItem[];
+  totalElements: number;
+  totalPages: number;
+  curPage: number;
+  first: boolean;
+  last: boolean;
+  empty: boolean;
+}
+
+export type { ITags, IGuild, IPostBoard, IContentItem, IContent };

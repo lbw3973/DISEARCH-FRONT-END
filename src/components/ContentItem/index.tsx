@@ -1,10 +1,10 @@
-import { IContent } from "@/types/server";
+import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
 import { useEffect, useRef, useState } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 
-const ContentItem = ({ content, hasJoinButton }: { content: IContent; hasJoinButton?: boolean }) => {
+const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoinButton?: boolean }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [hasOpenButton, setHasOpenButton] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -31,7 +31,15 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContent; hasJoinBut
           <span className="text-xs whitespace-nowrap">{getPostingTime(content.createdAt)}</span>
         </div>
         <div className="flex justify-between items-center gap-4 pr-2">
-          <img src="https://picsum.photos/66/66" alt="Server_Icon" className="w-[66px] h-[66px]" />
+          <img
+            src={
+              content.iconId === undefined || content.iconId === "/discord.png"
+                ? "/discord.png"
+                : `https://cdn.discordapp.com/icons/${content.serverId}/${content.iconId}`
+            }
+            alt="Server_Icon"
+            className="w-[88px] h-[64px]"
+          />
           <div className="flex flex-col gap-2 justify-start items-start w-full whitespace-nowrap py-1">
             <div className="flex justify-between items-center w-full">
               <span className="bg-[#ebcce7] rounded-md px-2 py-1 text-black font-bold text-sm h-7">

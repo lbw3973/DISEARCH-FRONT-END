@@ -27,7 +27,9 @@ const SideBar = () => {
         </div>
         {/* <div className="w-11/12 h-px bg-[#ccc] mx-auto my-3"></div> */}
         <div className="pb-3">
-          <h3 className="text-lg text-white px-20 py-2 bg-[#374151] font-bold text-center">인기 태그</h3>
+          <h3 className="text-lg text-white px-20 py-2 bg-[#374151] font-bold text-center whitespace-nowrap">
+            인기 태그
+          </h3>
           <ul className="flex gap-2 flex-wrap p-3">
             {tags &&
               tags
