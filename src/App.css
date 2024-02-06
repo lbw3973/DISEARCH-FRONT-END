@@ -27,3 +27,7 @@ body {
   font-weight: 400;
   src: url("./fonts/PretendardVariable.woff2") format("woff");
 }
+
+.ant-pagination-options {
+  display: none !important;
+}

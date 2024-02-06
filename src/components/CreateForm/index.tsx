@@ -12,11 +12,16 @@ import { useNavigate } from "react-router-dom";
 interface IChannelInfo {
   serverId: string;
   serverName: string;
+  iconId: string;
 }
 
 const CreateForm = () => {
   const [isClicked, setIsCliked] = useState(false);
-  const [selectedName, setSelectedName] = useState<IChannelInfo>({ serverId: "", serverName: "채널선택" });
+  const [selectedName, setSelectedName] = useState<IChannelInfo>({
+    serverId: "",
+    serverName: "채널선택",
+    iconId: "/discord.png",
+  });
   const [selectedCategory, setSelectedCategory] = useState("카테고리 선택");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [inputTag, setInputTag] = useState("");
@@ -87,9 +92,6 @@ const CreateForm = () => {
     } else {
       alert("에러가 발생했습니다.\n다시 시도해주세요.");
     }
-
-    // const res = await getGuildCode(selectedName.serverId);
-    // console.log(res);
   };
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -100,7 +102,14 @@ const CreateForm = () => {
     <div className="w-full md:w-[800px] h-full pb-10 bg-gray-900 rounded-xl ">
       <div className="flex">
         <div className="w-[100px] h-[100px] flex justify-center items-center">
-          <img src="/discord.png" alt="서버이미지" />
+          <img
+            src={
+              selectedName.iconId === null || selectedName.iconId === "/discord.png"
+                ? "/discord.png"
+                : `https://cdn.discordapp.com/icons/${selectedName.serverId}/${selectedName.iconId}`
+            }
+            alt="서버이미지"
+          />
         </div>
         <div className="relative flex items-center rounded-xl w-full bg-gray-900 z-0">
           <div className="md:w-[340px] w-[170px] h-[52px] px-3 m-3 bg-[#333740] rounded-2xl border border-solid border-gray-400 focus-within:ring-2 focus-within:ring-[#2c62f6] transition-all duration-400">
@@ -124,7 +133,7 @@ const CreateForm = () => {
                   <li
                     key={index}
                     className={`w[340px] scale-y-100 transition-all duration-500 leading-[52px] hover:bg-slate-500 cursor-pointer ${isClicked ? "h-[52px]" : "h-0"}`}
-                    onClick={() => clickChannel({ serverId: data.id, serverName: data.name })}
+                    onClick={() => clickChannel({ serverId: data.id, serverName: data.name, iconId: data.icon })}
                   >
                     {data.name}
                   </li>

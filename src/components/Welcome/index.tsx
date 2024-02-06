@@ -16,7 +16,7 @@ const Typing_Headers = [
 ];
 
 const TYPING_POST_DELAY = 500;
-const TYPING_SPEED = 50;
+const TYPING_SPEED = 30;
 
 const Welcome = () => {
   const random = Math.random() * (Typing_Headers.length - 1 - 0);
