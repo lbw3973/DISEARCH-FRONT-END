@@ -17,7 +17,7 @@ export const getBoards = async (page: number, searchType?: string, searchParam?:
     endPoint += `?${searchType}=${searchParam}`;
   }
 
-  const res = await instance.get(`${endPoint}?page=${page}`);
+  const res = await instance.get(`${endPoint}${searchType ? "&" : "?"}page=${page}`);
 
   return res.data.data;
 };
