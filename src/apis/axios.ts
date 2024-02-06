@@ -1,7 +1,7 @@
 import { getCookie } from "@/util/cookie";
 import axios, { AxiosError } from "axios";
 
-const createInstance = (isServer: boolean) => {
+const createInstance = (isServer: boolean, isBot?: boolean) => {
   const instance = axios.create({
     baseURL: isServer ? import.meta.env.VITE_SERVER_URL : "https://discord.com/api",
     timeout: 10000,
@@ -11,16 +11,24 @@ const createInstance = (isServer: boolean) => {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Credentials": true,
         }
-      : {
-          "Content-Type": "application/json",
-        },
+      : isBot
+        ? {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          }
+        : {
+            "Content-Type": "application/json",
+          },
     withCredentials: true,
   });
 
   instance.interceptors.request.use(
     request => {
       const token = getCookie("Disearch_access_token");
-      console.log(token);
+      if (isBot) {
+        request.headers["authorization"] = `Bot ${import.meta.env.VITE_DISCORD_BOT_TOKEN}`;
+        return request;
+      }
       if (token) request.headers["authorization"] = `Bearer ${token}`;
       if (!token) request.headers["authorization"] = "";
       return request;
@@ -66,3 +74,4 @@ const createInstance = (isServer: boolean) => {
 };
 export const instance = createInstance(true);
 export const discordInstance = createInstance(false);
+export const discordBotInstance = createInstance(false, true);

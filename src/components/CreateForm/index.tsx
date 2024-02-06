@@ -7,8 +7,7 @@ import { getTags, postBoard } from "@/apis/server";
 import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { getUserGuildsInfo } from "@/apis/discord";
-
-// const mock_Guilds = [{ name: "서버" }, { name: "협업파티" }];
+import { useNavigate } from "react-router-dom";
 
 interface IChannelInfo {
   serverId: string;
@@ -24,8 +23,7 @@ const CreateForm = () => {
   const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
   const [text, setText] = useState("");
   const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
-
-  console.log(guildsList);
+  const navigate = useNavigate();
 
   const clickChannel = (name: IChannelInfo) => {
     setIsCliked(!isClicked);
@@ -74,7 +72,6 @@ const CreateForm = () => {
       alert("설명을 최소 50자 이상 적어주세요.");
       return;
     }
-    console.log(selectedName);
 
     const res = await postBoard({
       serverId: selectedName.serverId,
@@ -84,6 +81,15 @@ const CreateForm = () => {
       content: text,
     });
     console.log(res);
+    if (res.status === 200) {
+      alert("서버가 추가되었습니다!");
+      navigate("/");
+    } else {
+      alert("에러가 발생했습니다.\n다시 시도해주세요.");
+    }
+
+    // const res = await getGuildCode(selectedName.serverId);
+    // console.log(res);
   };
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {

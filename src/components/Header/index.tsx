@@ -6,7 +6,7 @@ import { FaCaretUp } from "react-icons/fa";
 import { getCookie, removeCookie } from "@/util/cookie";
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
-const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=http://localhost:5173/OAuth2`;
+const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_DISCORD_REDIRECT_URL}`;
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -36,7 +36,7 @@ const Header = () => {
 
   const searchData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(inputRef.current?.value);
+    navigate(`/search/tag/${inputRef.current?.value}`);
   };
 
   return (

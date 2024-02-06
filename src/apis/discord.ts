@@ -1,9 +1,8 @@
-import { discordInstance } from "@/apis/axios";
+import { discordBotInstance, discordInstance } from "@/apis/axios";
 import { IGuild } from "@/types/server";
 import { getCookie } from "@/util/cookie";
 
 export const getUserInfo = async () => {
-  console.log(getCookie("Disearch_access_token"));
   if (!getCookie("Disearch_access_token")) {
     return null;
   }
@@ -19,4 +18,14 @@ export const getUserGuildsInfo = async () => {
   return res.data.filter((data: IGuild) => {
     return data.owner === true;
   });
+};
+
+export const getGuildCode = async (id: string) => {
+  const res = await discordBotInstance.get(`/guilds/${id}/templates?permissions=1`);
+  return res;
+};
+
+export const testGuild = async () => {
+  const res = await discordBotInstance.get("/guilds/699251850939203600/invites");
+  return res;
 };

@@ -1,12 +1,13 @@
+import ScrollToTop from "@/components/ScrollToTop";
 import { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 const Search = () => {
-  const { group } = useParams();
+  const { type } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (group !== "category" && group !== "tag") {
+    if (type !== "category" && type !== "tag") {
       navigate("/notfound");
     }
   }, []);
@@ -14,6 +15,7 @@ const Search = () => {
   return (
     <div className="w-3/4 mx-auto">
       <Outlet />
+      <ScrollToTop />
     </div>
   );
 };

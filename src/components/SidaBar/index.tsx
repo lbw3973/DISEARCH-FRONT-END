@@ -30,16 +30,18 @@ const SideBar = () => {
           <h3 className="text-lg text-white px-20 py-2 bg-[#374151] font-bold text-center">인기 태그</h3>
           <ul className="flex gap-2 flex-wrap p-3">
             {tags &&
-              tags.map((item, index) => (
-                <li
-                  key={index}
-                  className="bg-[#f8b5a5] text-black py-1 px-2 rounded-md cursor-pointer text-sm hover:bg-[#ee9b87] hover:scale-110 duration-300"
-                  onClick={() => navigate(`/search/tag/${item.name}`)}
-                >
-                  <span className="font-bold">{item.name}</span>
-                  <span className="text-gray-600 font-bold text-xs">({item.count})</span>
-                </li>
-              ))}
+              tags
+                .sort((a, b) => b.count - a.count)
+                .map((item, index) => (
+                  <li
+                    key={index}
+                    className="bg-[#f8b5a5] text-black py-1 px-2 rounded-md cursor-pointer text-sm hover:bg-[#ee9b87] hover:scale-110 duration-300"
+                    onClick={() => navigate(`/search/tag/${item.name}`)}
+                  >
+                    <span className="font-bold">{item.name}</span>
+                    <span className="text-gray-600 font-bold text-xs">({item.count})</span>
+                  </li>
+                ))}
           </ul>
         </div>
       </div>
