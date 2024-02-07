@@ -2,8 +2,8 @@ import { useState } from "react";
 import Typing from "react-kr-typing-anim";
 import { Link } from "react-router-dom";
 import "@/styles/button.scss";
-import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { loginURL } from "@/util/loginURL";
+import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 
 const Typing_Headers = [
   ["환영합니다!👋", "🎉원하는 Discord 서버에 참가해보세요!🎉"],
@@ -35,11 +35,11 @@ const Welcome = () => {
     }, TYPING_POST_DELAY);
   };
 
-  const { status } = useUserLoginStatusStore();
+  const { userInfo } = useGetUserInfo();
 
   return (
     <div className="flex justify-evenly items-center flex-col px-4 mb-10 font-Pretendard">
-      <Link to={status ? "/new" : loginURL} className="text-4xl p-4 rounded-md">
+      <Link to={userInfo ? "/new" : loginURL} className="text-4xl p-4 rounded-md">
         <button className="CreateButton">
           <div>
             <span>서</span>
