@@ -33,8 +33,7 @@ const MypageList = () => {
         <div>
           <h1 className="border-b-2 border-solid text-3xl font-bold p-3">추가한 내 서버</h1>
           <div className="flex flex-wrap mx-auto px-4 font-Pretendard justify-center md:justify-normal w-full">
-            {myBoards &&
-              myBoards.list.map((content, index) => <ContentItem content={content} key={index} hasJoinButton />)}
+            {myBoards && myBoards.list.map((content, index) => <ContentItem content={content} key={index} />)}
             <div className="flex">
               <button className="w-[180px] h-14 bg-[#7289da] rounded-lg text-2xl mt-5">
                 <NavLink to={"/new"}>+ 서버 추가</NavLink>

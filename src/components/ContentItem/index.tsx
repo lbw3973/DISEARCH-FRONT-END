@@ -1,4 +1,4 @@
-import { getChannel, getGuildChannels, getGuildCode } from "@/apis/discord";
+import { getChannel } from "@/apis/discord";
 import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
 import { useEffect, useRef, useState } from "react";
@@ -20,16 +20,6 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
 
   const handleClickJoin = async () => {
     const res = await getChannel(content.serverId);
-    console.log(res);
-  };
-
-  const getGuildChannelsTest = async () => {
-    const res = await getGuildChannels(content.serverId);
-    console.log(res);
-  };
-
-  const getGuildTemplatesTest = async () => {
-    const res = await getGuildCode(content.serverId);
     console.log(res);
   };
 
@@ -74,12 +64,6 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
                   </div>
                 </button>
               )}
-              <button onClick={getGuildChannelsTest} className="bg-white text-black">
-                겟길드채널스
-              </button>
-              <button onClick={getGuildTemplatesTest} className="bg-white text-black">
-                겟길드템플릿
-              </button>
             </div>
             <div className="flex gap-2 flex-wrap">
               {content.tag.map((tag, index) => (
