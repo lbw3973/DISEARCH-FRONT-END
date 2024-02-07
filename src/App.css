@@ -12,13 +12,14 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
 
-#root {
   background-image: url(/backGround.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+#root {
 }
 
 @font-face {

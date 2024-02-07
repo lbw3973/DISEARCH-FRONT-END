@@ -17,6 +17,7 @@ interface IGuild {
 interface IPostBoard {
   serverId: string;
   serverName: string;
+  userId: string;
   iconId: string;
   category: string;
   tag: string[];
@@ -25,7 +26,7 @@ interface IPostBoard {
 
 interface IContentItem {
   serverName: string;
-  serverId: number;
+  serverId: string;
   iconId: string;
   category: string;
   tag: string[];
