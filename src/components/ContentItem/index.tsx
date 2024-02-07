@@ -1,3 +1,4 @@
+import { getGuild } from "@/apis/discord";
 import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
 import { useEffect, useRef, useState } from "react";
@@ -18,9 +19,8 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   }, []);
 
   const handleClickJoin = async () => {
-    // window.open()
-    // const res = await testGuild();
-    // console.log(res);
+    const res = await getGuild(content.serverId);
+    console.log(res);
   };
 
   return (
