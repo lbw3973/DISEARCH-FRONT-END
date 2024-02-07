@@ -101,7 +101,7 @@ const CreateForm = () => {
 
   return (
     <div className="w-full md:w-[800px] h-full pb-10 bg-gray-900 rounded-xl ">
-      <div className="flex">
+      <div className="flex px-2">
         <div className="w-[100px] h-[100px] flex justify-center items-center">
           <img
             src={
@@ -110,6 +110,7 @@ const CreateForm = () => {
                 : `https://cdn.discordapp.com/icons/${selectedName.serverId}/${selectedName.iconId}`
             }
             alt="서버이미지"
+            className="w-[88px] h-[64px]"
           />
         </div>
         <div className="relative flex items-center rounded-xl w-full bg-gray-900 z-0">

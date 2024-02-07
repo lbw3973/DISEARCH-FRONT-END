@@ -30,7 +30,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
           <h2 className="overflow-hidden md:text-xl text-ellipsis whitespace-nowrap">{content.serverName}</h2>
           <span className="text-xs whitespace-nowrap">{getPostingTime(content.createdAt)}</span>
         </div>
-        <div className="flex justify-between items-center gap-4 pr-2">
+        <div className="flex justify-between items-center gap-4 px-2">
           <img
             src={
               content.iconId === null ||

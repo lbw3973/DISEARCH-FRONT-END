@@ -25,7 +25,7 @@ interface IPostBoard {
 
 interface IContentItem {
   serverName: string;
-  serverId: number;
+  serverId: string;
   iconId: string;
   category: string;
   tag: string[];
