@@ -8,6 +8,7 @@ import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { getUserGuildsInfo } from "@/apis/discord";
 import { useNavigate } from "react-router-dom";
+import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 
 interface IChannelInfo {
   serverId: string;
@@ -29,6 +30,8 @@ const CreateForm = () => {
   const [text, setText] = useState("");
   const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
   const navigate = useNavigate();
+
+  const { userInfo } = useGetUserInfo();
 
   const clickChannel = (name: IChannelInfo) => {
     setIsCliked(!isClicked);
@@ -77,21 +80,23 @@ const CreateForm = () => {
       alert("설명을 최소 50자 이상 적어주세요.");
       return;
     }
-
-    const res = await postBoard({
-      serverId: selectedName.serverId,
-      serverName: selectedName.serverName,
-      iconId: selectedName.iconId,
-      category: selectedCategory,
-      tag: selectedTags,
-      content: text,
-    });
-    console.log(res);
-    if (res.status === 200) {
-      alert("서버가 추가되었습니다!");
-      navigate("/");
-    } else {
-      alert("에러가 발생했습니다.\n다시 시도해주세요.");
+    if (userInfo) {
+      const res = await postBoard({
+        serverId: selectedName.serverId,
+        serverName: selectedName.serverName,
+        userId: userInfo.id,
+        iconId: selectedName.iconId,
+        category: selectedCategory,
+        tag: selectedTags,
+        content: text,
+      });
+      console.log(res);
+      if (res.status === 200) {
+        alert("서버가 추가되었습니다!");
+        navigate("/");
+      } else {
+        alert("에러가 발생했습니다.\n다시 시도해주세요.");
+      }
     }
   };
 
@@ -110,6 +115,7 @@ const CreateForm = () => {
                 : `https://cdn.discordapp.com/icons/${selectedName.serverId}/${selectedName.iconId}`
             }
             alt="서버이미지"
+            className="w-[88px] h-[64px]"
           />
         </div>
         <div className="relative flex items-center rounded-xl w-full bg-gray-900 z-0">
