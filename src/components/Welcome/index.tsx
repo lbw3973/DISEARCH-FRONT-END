@@ -2,7 +2,7 @@ import { useState } from "react";
 import Typing from "react-kr-typing-anim";
 import { Link } from "react-router-dom";
 import "@/styles/button.scss";
-import { loginURL } from "@/util/loginURL";
+import { loginURL } from "@/util/redirectURL";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 
 const Typing_Headers = [

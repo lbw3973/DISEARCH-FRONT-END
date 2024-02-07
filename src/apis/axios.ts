@@ -5,21 +5,9 @@ const createInstance = (isServer: boolean, isBot?: boolean) => {
   const instance = axios.create({
     baseURL: isServer ? import.meta.env.VITE_SERVER_URL : "https://discord.com/api",
     timeout: 10000,
-    headers: isServer
-      ? {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          // "Access-Control-Allow-Credentials": true,
-        }
-      : isBot
-        ? {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          }
-        : {
-            "Content-Type": "application/json",
-          },
-    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   instance.interceptors.request.use(

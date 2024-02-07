@@ -4,7 +4,8 @@ import Home from "@/pages/Home";
 import Create from "@/pages/Create";
 import NotFound from "@/pages/NotFound";
 import Mypage from "@/pages/Mypage";
-import OAuth2 from "@/pages/Oauth2";
+import OAuth2 from "@/pages/OAuth2";
+import OAuth2Bot from "@/pages/OAuth2Bot";
 import Search from "@/pages/Search";
 import Type from "@/pages/Search/Group";
 import ProtectedRouter from "./ProtectedRouter";
@@ -25,6 +26,7 @@ function Router() {
           <Route path="/*" element={<NotFound />} />
         </Route>
         <Route path="/OAuth2" element={<OAuth2 />} />
+        <Route path="/OAuth2Bot" element={<OAuth2Bot />} />
       </Routes>
     </BrowserRouter>
   );

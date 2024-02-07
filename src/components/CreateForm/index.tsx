@@ -7,8 +7,9 @@ import { getTags, postBoard } from "@/apis/server";
 import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { getUserGuildsInfo } from "@/apis/discord";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
+import { addBotURL } from "@/util/redirectURL";
 
 interface IChannelInfo {
   serverId: string;
@@ -62,6 +63,10 @@ const CreateForm = () => {
   const removeTag = (tag: string) => {
     setSelectedTags(selectedTags.filter(t => t !== tag));
   };
+
+  // const redirectOAuth2Bot = () => {
+  //   navigate(`${addBotURL}&guild_id=${selectedName.serverId}`);
+  // };
 
   const saveData = async () => {
     if (selectedName.serverName === "채널선택") {
@@ -234,6 +239,7 @@ const CreateForm = () => {
         >
           저장
         </button>
+        <Link to={`${addBotURL}&guild_id=${selectedName.serverId}`}>임시</Link>
       </div>
     </div>
   );
