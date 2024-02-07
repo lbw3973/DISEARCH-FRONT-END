@@ -1,19 +1,19 @@
-import { useGetUserInfo } from "@/hooks/useGetUserInfo";
+import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 function ProtectedRouter() {
-  const { userInfo } = useGetUserInfo();
+  const { status } = useUserLoginStatusStore();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userInfo) {
+    if (!status) {
       alert("로그인이 필요합니다.");
       navigate("/");
     }
   }, []);
 
-  return !userInfo ? null : <Outlet />;
+  return !status ? null : <Outlet />;
 }
 
 export default ProtectedRouter;

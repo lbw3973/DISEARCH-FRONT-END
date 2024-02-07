@@ -5,13 +5,21 @@ import { NavLink } from "react-router-dom";
 import ContentItem from "../ContentItem";
 import { getMyBoards } from "@/apis/server";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
+import { useEffect, useState } from "react";
 
 const MypageList = () => {
+  const [userId, setUserId] = useState("");
   const { userInfo } = useGetUserInfo();
   const { data: myBoards, isLoading } = useQuery<IContent>({
-    queryKey: ["myboards"],
-    queryFn: () => getMyBoards(userInfo?.id as string),
+    queryKey: ["myboards", userId],
+    queryFn: () => getMyBoards(userId),
   });
+
+  useEffect(() => {
+    if (userInfo) {
+      setUserId(userInfo?.id);
+    }
+  }, [userInfo]);
 
   console.log(myBoards);
   return (
