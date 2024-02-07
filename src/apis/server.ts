@@ -21,3 +21,8 @@ export const getBoards = async (page: number, searchType?: string, searchParam?:
 
   return res.data.data;
 };
+
+export const getMyBoards = async (userId: string) => {
+  const res = await instance.get(`/mypage/board?id=${userId}`);
+  return res.data;
+};

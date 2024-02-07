@@ -1,3 +1,4 @@
+import { getCookie } from "@/util/cookie";
 import { create } from "zustand";
 
 interface IUserLoginStatusStore {
@@ -6,7 +7,7 @@ interface IUserLoginStatusStore {
 }
 
 const LoginStatusStore = create<IUserLoginStatusStore>(set => ({
-  status: false,
+  status: getCookie("Disearch_access_token") as boolean,
   setStatus: (state: boolean) => set({ status: state }),
 }));
 
