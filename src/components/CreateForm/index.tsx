@@ -81,6 +81,7 @@ const CreateForm = () => {
     const res = await postBoard({
       serverId: selectedName.serverId,
       serverName: selectedName.serverName,
+      iconId: selectedName.iconId,
       category: selectedCategory,
       tag: selectedTags,
       content: text,

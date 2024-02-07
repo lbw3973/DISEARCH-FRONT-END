@@ -33,7 +33,10 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
         <div className="flex justify-between items-center gap-4 pr-2">
           <img
             src={
-              content.iconId === undefined || content.iconId === "/discord.png"
+              content.iconId === null ||
+              content.iconId === "/discord.png" ||
+              content.iconId === undefined ||
+              content.iconId === ""
                 ? "/discord.png"
                 : `https://cdn.discordapp.com/icons/${content.serverId}/${content.iconId}`
             }

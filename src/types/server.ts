@@ -17,6 +17,7 @@ interface IGuild {
 interface IPostBoard {
   serverId: string;
   serverName: string;
+  iconId: string;
   category: string;
   tag: string[];
   content: string;
