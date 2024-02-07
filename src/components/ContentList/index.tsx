@@ -46,7 +46,7 @@ const ContentList = ({ searchType, searchParam }: { searchType?: string; searchP
               },
             }}
           >
-            <Pagination total={total} onChange={changePage} />
+            <Pagination total={total} onChange={changePage} defaultPageSize={12} />
           </ConfigProvider>
         </div>
       </div>
