@@ -8,13 +8,13 @@ const createInstance = (isServer: boolean, isBot?: boolean) => {
     headers: isServer
       ? {
           "Content-Type": "application/json",
-          // "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "*",
           // "Access-Control-Allow-Credentials": true,
         }
       : isBot
         ? {
             "Content-Type": "application/json",
-            // "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "*",
           }
         : {
             "Content-Type": "application/json",
