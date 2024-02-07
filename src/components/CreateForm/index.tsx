@@ -106,7 +106,7 @@ const CreateForm = () => {
 
   return (
     <div className="w-full md:w-[800px] h-full pb-10 bg-gray-900 rounded-xl ">
-      <div className="flex">
+      <div className="flex px-2">
         <div className="w-[100px] h-[100px] flex justify-center items-center">
           <img
             src={
