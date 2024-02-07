@@ -21,11 +21,26 @@ export const getUserGuildsInfo = async () => {
 };
 
 export const getGuildCode = async (id: string) => {
-  const res = await discordBotInstance.get(`/guilds/${id}/templates?permissions=1`);
+  const res = await discordBotInstance.get(`/guilds/${id}/templates`);
   return res;
 };
 
 export const testGuild = async () => {
   const res = await discordBotInstance.get("/guilds/699251850939203600/invites");
+  return res;
+};
+
+export const getGuildChannels = async (id: string) => {
+  const res = await discordBotInstance.get(`/guilds/${id}/channels`);
+  return res;
+};
+
+export const getGuild = async (id: string) => {
+  const res = await discordBotInstance.get(`/guilds/${id}`);
+  return res;
+};
+
+export const getChannel = async (id: string) => {
+  const res = await discordBotInstance.get(`/channels/${id}`);
   return res;
 };

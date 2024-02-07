@@ -6,7 +6,7 @@ import { FaCaretUp } from "react-icons/fa";
 import { getCookie, removeCookie } from "@/util/cookie";
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
-import { loginURL } from "@/util/loginURL";
+import { loginURL } from "@/util/redirectURL";
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
