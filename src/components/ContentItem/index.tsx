@@ -24,7 +24,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   };
 
   return (
-    <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[350px] p-3 w-full">
+    <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[340px] p-3 w-full">
       <div className="bg-[rgba(0,0,0,0.9)] rounded-md">
         <div className="flex justify-between p-3 items-center bg-gray-700 rounded-t-md">
           <h2 className="overflow-hidden md:text-xl text-ellipsis whitespace-nowrap">{content.serverName}</h2>
@@ -82,7 +82,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
         <div className="px-2 relative pb-4">
           <div
             ref={contentBlockRef}
-            className={`${isClicked ? "h-full" : "max-h-[240px]"} overflow-hidden pb-4 select-text selection:bg-white selection:text-black`}
+            className={`${isClicked ? "h-full" : "max-h-[240px]"} overflow-hidden pb-4 select-text break-words selection:bg-white selection:text-black`}
           >
             {content.content
               .split("\n")

@@ -90,7 +90,7 @@ const CreateForm = () => {
         tag: selectedTags,
         content: text,
       });
-      console.log(res);
+
       if (res.status === 200) {
         alert("서버가 추가되었습니다!");
         navigate("/");
