@@ -1,4 +1,6 @@
-import { getChannel } from "@/apis/discord";
+// import { getGuildCode } from "@/apis/discord";
+// import DiscordInvite from "react-discord-invite";
+import { getInviteCode } from "@/apis/server";
 import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
 import { useEffect, useRef, useState } from "react";
@@ -19,8 +21,10 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   }, []);
 
   const handleClickJoin = async () => {
-    const res = await getChannel(content.serverId);
+    const res = await getInviteCode(content.serverId);
     console.log(res);
+    // const inviteCode = res.data;
+    // window.open(`https://discord.gg/${inviteCode}`)
   };
 
   return (
@@ -49,6 +53,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
                 {content.category}
               </span>
               {hasJoinButton && (
+                // <DiscordInvite guild={content.serverId} palette="light" />
                 <button
                   className="bg-[#7079d6] text-white JoinButton font-bold h-1/2 whitespace-nowrap rounded-md p-2 hover:bg-[#5865f2] duration-300"
                   onClick={handleClickJoin}

@@ -26,3 +26,9 @@ export const getMyBoards = async (userId: string) => {
   const res = await instance.get(`/mypage/board?id=${userId}`);
   return res.data.data;
 };
+
+export const getInviteCode = async (serverId: string) => {
+  const res = await instance.post("/join", { severId: serverId });
+  console.log(res);
+  return res;
+};
