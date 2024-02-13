@@ -3,13 +3,14 @@ import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import category from "@/constants/category.json";
 import { GiCancel } from "react-icons/gi";
-import { getTags, postBoard } from "@/apis/server";
+import { getTags } from "@/apis/server";
 import { IGuild, ITags } from "@/types/server";
 import { useQuery } from "@tanstack/react-query";
 import { getUserGuildsInfo } from "@/apis/discord";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 import { addBotURL } from "@/util/redirectURL";
+import { useCreateDataStore } from "@/stores/useCreateData";
 
 interface IChannelInfo {
   serverId: string;
@@ -30,9 +31,9 @@ const CreateForm = () => {
   const { data: tags } = useQuery<ITags[]>({ queryKey: ["tags"], queryFn: getTags });
   const [text, setText] = useState("");
   const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
-  const navigate = useNavigate();
 
   const { userInfo } = useGetUserInfo();
+  const { createData, setCreateData } = useCreateDataStore();
 
   const clickChannel = (name: IChannelInfo) => {
     setIsCliked(!isClicked);
@@ -64,29 +65,30 @@ const CreateForm = () => {
     setSelectedTags(selectedTags.filter(t => t !== tag));
   };
 
-  // const redirectOAuth2Bot = () => {
-  //   navigate(`${addBotURL}&guild_id=${selectedName.serverId}`);
-  // };
-
-  const saveData = async () => {
+  const saveData = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    console.log(selectedTags.length);
     if (selectedName.serverName === "채널선택") {
+      e.preventDefault();
       alert("채널을 선택해주세요.");
       return;
     }
     if (selectedCategory === "카테고리 선택") {
+      e.preventDefault();
       alert("카테고리를 선택해주세요.");
       return;
     }
     if (selectedTags.length === 0) {
+      e.preventDefault();
       alert("태그를 최소 1개이상 선택해주세요.");
       return;
     }
-    if (text.length < 50) {
+    if (text.length < 50 && text.length === 0) {
+      e.preventDefault();
       alert("설명을 최소 50자 이상 적어주세요.");
       return;
     }
     if (userInfo) {
-      const res = await postBoard({
+      setCreateData({
         serverId: selectedName.serverId,
         serverName: selectedName.serverName,
         userId: userInfo.id,
@@ -95,16 +97,10 @@ const CreateForm = () => {
         tag: selectedTags,
         content: text,
       });
-
-      if (res.status === 200) {
-        alert("서버가 추가되었습니다!");
-        navigate("/");
-      } else {
-        alert("에러가 발생했습니다.\n다시 시도해주세요.");
-      }
     }
   };
 
+  console.log(createData);
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
@@ -233,13 +229,11 @@ const CreateForm = () => {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <button
-          className="mt-10 border border-solid px-10 py-2 rounded-lg bg-green-500 text-gray-200 font-bold text-xl"
-          onClick={saveData}
-        >
-          저장
-        </button>
-        <Link to={`${addBotURL}&guild_id=${selectedName.serverId}`}>임시</Link>
+        <Link to={`${addBotURL}&guild_id=${selectedName.serverId}`} onClick={e => saveData(e)}>
+          <button className="mt-10 border border-solid px-10 py-2 rounded-lg bg-green-500 text-gray-200 font-bold text-xl">
+            저장
+          </button>
+        </Link>
       </div>
     </div>
   );
