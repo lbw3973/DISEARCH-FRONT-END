@@ -28,7 +28,7 @@ export const getMyBoards = async (userId: string) => {
 };
 
 export const getInviteCode = async (serverId: string) => {
-  const res = await instance.post("/join", { severId: serverId });
+  const res = await instance.post("/join", { serverId: serverId });
   console.log(res);
   return res;
 };

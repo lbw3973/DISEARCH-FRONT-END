@@ -21,10 +21,9 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   }, []);
 
   const handleClickJoin = async () => {
-    const invite = await getInviteCode(content.serverId);
-    console.log(invite);
-    // const inviteCode = res.data;
-    // window.open(`https://discord.gg/${inviteCode}`)
+    const res = await getInviteCode(content.serverId);
+    const inviteCode = res.data;
+    window.open(`https://discord.gg/${inviteCode}`);
   };
 
   return (
