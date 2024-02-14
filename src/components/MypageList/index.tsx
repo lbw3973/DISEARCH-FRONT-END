@@ -21,7 +21,6 @@ const MypageList = () => {
     }
   }, [userInfo]);
 
-  console.log(myBoards);
   return (
     <>
       {isLoading && (

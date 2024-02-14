@@ -15,7 +15,6 @@ const OAuth2Bot = () => {
     const post = async () => {
       const res = await postBoard(createData);
       resetCreateData();
-      console.log(res);
       if (res.status === 200) {
         alert("서버가 추가되었습니다!");
       } else {
