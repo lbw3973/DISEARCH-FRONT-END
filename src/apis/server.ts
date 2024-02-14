@@ -29,6 +29,15 @@ export const getMyBoards = async (userId: string) => {
 
 export const getInviteCode = async (serverId: string) => {
   const res = await instance.post("/join", { serverId: serverId });
-  console.log(res);
+  return res;
+};
+
+interface IDeleteReq {
+  userId: string;
+  id: string;
+}
+
+export const deleteMyBoards = async (data: IDeleteReq) => {
+  const res = await instance.delete("/mypage/board", { headers: { userId: data.userId, id: data.id } });
   return res;
 };

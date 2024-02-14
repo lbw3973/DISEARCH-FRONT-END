@@ -1,18 +1,20 @@
-// import { getGuildCode } from "@/apis/discord";
-// import DiscordInvite from "react-discord-invite";
-import { getInviteCode } from "@/apis/server";
+import { deleteMyBoards, getInviteCode } from "@/apis/server";
+import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
 import { useEffect, useRef, useState } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoinButton?: boolean }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [hasOpenButton, setHasOpenButton] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const contentBlockRef = useRef<HTMLDivElement>(null);
+  const { userInfo } = useGetUserInfo();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  console.log(pathname);
 
   useEffect(() => {
     if (contentBlockRef.current?.clientHeight && contentBlockRef.current?.clientHeight >= 240) {
@@ -24,6 +26,14 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
     const res = await getInviteCode(content.serverId);
     const inviteCode = res.data;
     window.open(`https://discord.gg/${inviteCode}`);
+  };
+
+  const handleClickDelete = async () => {
+    if (userInfo) {
+      console.log(content.serverId, userInfo.id);
+      const res = await deleteMyBoards({ id: content.serverId, userId: userInfo?.id });
+      console.log(res);
+    }
   };
 
   return (
@@ -52,7 +62,6 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
                 {content.category}
               </span>
               {hasJoinButton && (
-                // <DiscordInvite guild={content.serverId} palette="light" />
                 <button
                   className="bg-[#7079d6] text-white JoinButton font-bold h-1/2 whitespace-nowrap rounded-md p-2 hover:bg-[#5865f2] duration-300"
                   onClick={handleClickJoin}
@@ -115,6 +124,13 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
             </div>
           )}
         </div>
+        {pathname === "/mypage" && (
+          <div className="bg-[#7079D6] rounded-b-md text-center">
+            <button className="py-2 text-xl w-full" onClick={handleClickDelete}>
+              서버 삭제하기
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
