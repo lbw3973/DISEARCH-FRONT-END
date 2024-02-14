@@ -81,7 +81,7 @@ const CreateForm = () => {
       alert("태그를 최소 1개이상 선택해주세요.");
       return;
     }
-    if (text.length < 50 && text.length === 0) {
+    if (text.length < 50 || text.length === 0) {
       e.preventDefault();
       alert("설명을 최소 50자 이상 적어주세요.");
       return;
