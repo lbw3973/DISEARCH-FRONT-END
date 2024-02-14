@@ -33,11 +33,11 @@ export const getInviteCode = async (serverId: string) => {
 };
 
 interface IDeleteReq {
-  userId: string;
-  id: string;
+  Userid: string;
+  Id: string;
 }
 
 export const deleteMyBoards = async (data: IDeleteReq) => {
-  const res = await instance.delete("/mypage/board", { headers: { userId: data.userId, id: data.id } });
-  return res;
+  const res = await instance.delete("/mypage/board", { headers: { userId: data.Userid, id: data.Id } });
+  return res.data;
 };

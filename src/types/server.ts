@@ -25,6 +25,7 @@ interface IPostBoard {
 }
 
 interface IContentItem {
+  id: string;
   serverName: string;
   serverId: string;
   iconId: string;

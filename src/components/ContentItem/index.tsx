@@ -2,6 +2,7 @@ import { deleteMyBoards, getInviteCode } from "@/apis/server";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,7 +15,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   const { userInfo } = useGetUserInfo();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log(pathname);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (contentBlockRef.current?.clientHeight && contentBlockRef.current?.clientHeight >= 240) {
@@ -29,10 +30,13 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   };
 
   const handleClickDelete = async () => {
-    if (userInfo) {
-      console.log(content.serverId, userInfo.id);
-      const res = await deleteMyBoards({ id: content.serverId, userId: userInfo?.id });
-      console.log(res);
+    if (confirm(`'${content.serverName}'서버를 삭제하시겠습니까?`)) {
+      if (userInfo) {
+        const res = await deleteMyBoards({ Id: content.id, Userid: userInfo.id });
+        if (res.status === "200") {
+          queryClient.invalidateQueries({ queryKey: ["myBoards", userInfo.id] });
+        }
+      }
     }
   };
 
