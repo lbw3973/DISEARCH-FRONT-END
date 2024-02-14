@@ -33,7 +33,7 @@ const CreateForm = () => {
   const { data: guildsList } = useQuery<IGuild[]>({ queryKey: ["guilds"], queryFn: getUserGuildsInfo });
 
   const { userInfo } = useGetUserInfo();
-  const { createData, setCreateData } = useCreateDataStore();
+  const { setCreateData } = useCreateDataStore();
 
   const clickChannel = (name: IChannelInfo) => {
     setIsCliked(!isClicked);
@@ -66,7 +66,6 @@ const CreateForm = () => {
   };
 
   const saveData = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    console.log(selectedTags.length);
     if (selectedName.serverName === "채널선택") {
       e.preventDefault();
       alert("채널을 선택해주세요.");
@@ -100,7 +99,6 @@ const CreateForm = () => {
     }
   };
 
-  console.log(createData);
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };

@@ -20,6 +20,7 @@ const ContentList = ({ searchType, searchParam }: { searchType?: string; searchP
   const changePage = (page: number) => {
     setNowPage(page - 1);
   };
+
   return (
     <>
       {isLoading && (

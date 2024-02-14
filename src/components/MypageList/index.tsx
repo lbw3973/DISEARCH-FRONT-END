@@ -11,7 +11,7 @@ const MypageList = () => {
   const [userId, setUserId] = useState("");
   const { userInfo } = useGetUserInfo();
   const { data: myBoards, isLoading } = useQuery<IContent>({
-    queryKey: ["myboards", userId],
+    queryKey: ["myBoards", userId],
     queryFn: () => getMyBoards(userId),
   });
 
@@ -21,7 +21,6 @@ const MypageList = () => {
     }
   }, [userInfo]);
 
-  console.log(myBoards);
   return (
     <>
       {isLoading && (

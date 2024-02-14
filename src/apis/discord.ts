@@ -20,8 +20,8 @@ export const getUserGuildsInfo = async () => {
   });
 };
 
-export const getGuildCode = async (id: string) => {
-  const res = await discordBotInstance.get(`/guilds/${id}/templates`);
+export const getGuildChannelId = async (id: string) => {
+  const res = await discordBotInstance.get(`/guilds/${id}`);
   return res;
 };
 
@@ -42,5 +42,10 @@ export const getGuild = async (id: string) => {
 
 export const getChannel = async (id: string) => {
   const res = await discordBotInstance.get(`/channels/${id}`);
+  return res;
+};
+
+export const getInvite = async (id: string) => {
+  const res = await discordBotInstance.get(`/channels/${id}/invites`);
   return res;
 };

@@ -1,16 +1,21 @@
-import { getChannel } from "@/apis/discord";
+import { deleteMyBoards, getInviteCode } from "@/apis/server";
+import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoinButton?: boolean }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [hasOpenButton, setHasOpenButton] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const contentBlockRef = useRef<HTMLDivElement>(null);
+  const { userInfo } = useGetUserInfo();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (contentBlockRef.current?.clientHeight && contentBlockRef.current?.clientHeight >= 240) {
@@ -19,8 +24,20 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   }, []);
 
   const handleClickJoin = async () => {
-    const res = await getChannel(content.serverId);
-    console.log(res);
+    const res = await getInviteCode(content.serverId);
+    const inviteCode = res.data;
+    window.open(`https://discord.gg/${inviteCode}`);
+  };
+
+  const handleClickDelete = async () => {
+    if (confirm(`'${content.serverName}'서버를 삭제하시겠습니까?`)) {
+      if (userInfo) {
+        const res = await deleteMyBoards({ Id: content.id, Userid: userInfo.id });
+        if (res.status === "200") {
+          queryClient.invalidateQueries({ queryKey: ["myBoards", userInfo.id] });
+        }
+      }
+    }
   };
 
   return (
@@ -111,6 +128,13 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
             </div>
           )}
         </div>
+        {pathname === "/mypage" && (
+          <div className="bg-[#7079D6] rounded-b-md text-center">
+            <button className="py-2 text-xl w-full" onClick={handleClickDelete}>
+              서버 삭제하기
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

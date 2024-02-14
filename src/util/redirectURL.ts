@@ -1,2 +1,2 @@
 export const loginURL = `https://discord.com/api/oauth2/authorize?scope=identify+email+guilds+guilds.join&response_type=code&client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_DISCORD_REDIRECT_URL}`;
-export const addBotURL = `https://discord.com/api/oauth2/authorize?client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&permissions=19473&scope=bot+applications.commands&response_type=code&redirect_uri=${import.meta.env.VITE_DISCORD_REDIRECT_URL}Bot`;
+export const addBotURL = `https://discord.com/api/oauth2/authorize?client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&permissions=19505&scope=bot+applications.commands&response_type=code&redirect_uri=${import.meta.env.VITE_DISCORD_REDIRECT_URL}Bot`;
