@@ -9,7 +9,7 @@ function ProtectedRouter() {
   useEffect(() => {
     if (!status) {
       alert("로그인이 필요합니다.");
-      navigate("/");
+      navigate("/boards/1");
     }
   }, []);
 

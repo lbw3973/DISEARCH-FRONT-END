@@ -4,10 +4,15 @@ import { getBoards } from "@/apis/server";
 import { IContent } from "@/types/server";
 import { ConfigProvider, Pagination } from "antd";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const ContentList = ({ searchType, searchParam }: { searchType?: string; searchParam?: string }) => {
+  const { pathname } = useLocation();
   const [nowPage, setNowPage] = useState(0);
   const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
+  const { page } = useParams();
+
   const { data: boards, isLoading } = useQuery<IContent>({
     queryKey: ["boards", nowPage, searchType, searchParam],
     queryFn: () => getBoards(nowPage, searchType, searchParam),
@@ -17,8 +22,13 @@ const ContentList = ({ searchType, searchParam }: { searchType?: string; searchP
     if (boards) setTotal(boards.totalElements);
   }, [boards]);
 
+  useEffect(() => {
+    setNowPage(Number(page) - 1);
+  }, [pathname]);
+
   const changePage = (page: number) => {
     setNowPage(page - 1);
+    navigate(`/${pathname.split("/")[1]}/${page}`);
   };
 
   return (
@@ -47,7 +57,7 @@ const ContentList = ({ searchType, searchParam }: { searchType?: string; searchP
               },
             }}
           >
-            <Pagination total={total} onChange={changePage} defaultPageSize={12} />
+            <Pagination total={total} onChange={changePage} defaultPageSize={12} current={nowPage + 1} />
           </ConfigProvider>
         </div>
       </div>

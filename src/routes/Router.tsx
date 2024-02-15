@@ -15,13 +15,13 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/boards/:page" element={<Home />} />
           <Route element={<ProtectedRouter />}>
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/new" element={<Create />} />
           </Route>
           <Route path="/search/:type" element={<Search />}>
-            <Route path=":param" element={<Type />} />
+            <Route path=":param/:page" element={<Type />} />
           </Route>
           <Route path="/*" element={<NotFound />} />
         </Route>

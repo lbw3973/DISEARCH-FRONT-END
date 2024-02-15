@@ -28,11 +28,11 @@ const OAuth2Bot = () => {
     } else if (error) {
       resetCreateData();
       alert("error 발생");
-      navigate("/");
+      navigate("/boards/1");
     }
   }, []);
 
-  return <div>index</div>;
+  return null;
 };
 
 export default OAuth2Bot;
