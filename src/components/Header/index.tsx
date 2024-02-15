@@ -8,8 +8,8 @@ import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 import { loginURL } from "@/util/redirectURL";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
-const text = ["조명철", "이병욱"];
+import { useSearchedDataStore } from "@/stores/useSearchedData";
+import "@/styles/scrollBar.scss";
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -17,6 +17,7 @@ const Header = () => {
   const [isProfileClicked, setIsProfileClicked] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { status, setStatus } = useUserLoginStatusStore();
+  const { searchedData, setSearchedData, removeSearchedData } = useSearchedDataStore();
   const navigate = useNavigate();
 
   const { userInfo } = useGetUserInfo();
@@ -39,7 +40,24 @@ const Header = () => {
 
   const searchData = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/search/tag/${inputRef.current?.value}`);
+    const value = inputRef.current?.value;
+    if (value) {
+      setSearchedData(value);
+      setIsHovered(false);
+      navigate(`/search/tag/${value}`);
+    }
+  };
+
+  const clickSearchedData = (data: string) => {
+    console.log("click!");
+    if (inputRef.current) {
+      inputRef.current.value = data;
+    }
+    navigate(`/search/tag/${data}`);
+  };
+
+  const clickRemoveSearchedData = (data: string) => {
+    removeSearchedData(data);
   };
 
   return (
@@ -48,7 +66,7 @@ const Header = () => {
         <div className="w-[170px] cursor-pointer" onClick={() => navigate("/")}>
           <img src="/DISEARCH.gif" alt="로고" className="w-[150px]" />
         </div>
-        <form className="relative lg:w-[440px] sm:w-[330px] xs:w-[240px]" onSubmit={searchData}>
+        <form className="relative lg:w-[440px] sm:w-[330px] xs:w-[240px] text-sm sm:text-base" onSubmit={searchData}>
           <div className="flex h-12">
             <IoIosSearch
               className={`${isHovered ? "opacity-100" : "opacity-0"} absolute top-1/2 left-2 -translate-y-1/2 z-10 duration-300`}
@@ -66,20 +84,31 @@ const Header = () => {
               <IoIosSearch className="z-10" size={20} />
             </button>
           </div>
-          <div className={`absolute flex items-center w-full  ${isHovered ? "h-full" : "h-0"} `}>
+          <div className={`absolute flex items-center w-full ${isHovered ? "h-full" : "h-0"}`}>
             <div
-              className={`absolute top-[3px] left-0 md:w-[440px] w-[170px] bg-[#7a7c81] rounded-xl p-3  overflow-auto scrollbar-hide max-h-[208px] ${isHovered ? "opacity-100 max-h-[208px]" : "opacity-0 h-0"}`}
+              className={`absolute top-[3px] left-0 w-full bg-[#374151] text-sm sm:text-base rounded-xl p-3 overflow-auto scrollbar-hide max-h-[208px] ${isHovered ? "opacity-100 max-h-[208px]" : "opacity-0 h-0"}`}
             >
-              <ul className={`${isHovered ? "max-h-[208px]" : "h-0"}`}>
-                <h1 className="px-2">최근검색어</h1>
-                {text.map((data, index) => (
+              <h1 className="px-2 pb-1 text-[#ccc]">최근검색어</h1>
+              <ul className={`${isHovered ? "max-h-[150px]" : "h-0"} overflow-y-scroll scrollBar`}>
+                {searchedData.map((data, index) => (
                   <li
                     key={index}
-                    className={`flex justify-between items-center px-3 w[340px] scale-y-100  leading-[52px] ${isHovered ? "h-[52px]" : "h-0"}`}
+                    className={`flex justify-between items-center sm:px-3 scale-y-100  leading-[52px] ${isHovered ? "h-[52px]" : "h-0"}`}
                   >
-                    <h1 className="hover:bg-slate-500 w-full cursor-pointer">{data}</h1>
-                    <div className="hover:bg-slate-500 w-10 h-full flex justify-center items-center cursor-pointer">
-                      <RiDeleteBin6Line size={20} />
+                    <h1
+                      onMouseDown={() => {
+                        clickSearchedData(data);
+                      }}
+                      className="hover:bg-slate-500 w-full cursor-pointer rounded-xl pl-2 duration-300 whitespace-nowrap overflow-hidden text-ellipsis"
+                    >
+                      {data}
+                    </h1>
+                    <div
+                      onMouseDown={e => e.preventDefault()}
+                      onClick={() => clickRemoveSearchedData(data)}
+                      className="hover:bg-slate-500 w-10 h-full flex justify-center items-center cursor-pointer rounded-xl duration-300"
+                    >
+                      <RiDeleteBin6Line className="w-5 sm:w-6 sm:h-full" />
                     </div>
                   </li>
                 ))}
