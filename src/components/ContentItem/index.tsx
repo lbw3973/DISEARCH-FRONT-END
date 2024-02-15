@@ -58,7 +58,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
                 : `https://cdn.discordapp.com/icons/${content.serverId}/${content.iconId}`
             }
             alt="Server_Icon"
-            className="w-[88px] h-[64px]"
+            className="w-[88px] h-[64px] rounded-md"
           />
           <div className="flex flex-col gap-2 justify-start items-start w-full whitespace-nowrap py-1">
             <div className="flex justify-between items-center w-full">
