@@ -129,7 +129,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
           )}
         </div>
         {pathname === "/mypage" && (
-          <div className="bg-[#7079D6] rounded-b-md text-center">
+          <div className="bg-[#e75a5a] rounded-b-md text-center hover:bg-[#ff4141]">
             <button className="py-2 text-xl w-full" onClick={handleClickDelete}>
               서버 삭제하기
             </button>
