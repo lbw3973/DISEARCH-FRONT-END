@@ -7,6 +7,9 @@ import { getCookie, removeCookie } from "@/util/cookie";
 import { useUserLoginStatusStore } from "@/stores/userLoginStatus";
 import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 import { loginURL } from "@/util/redirectURL";
+import { RiDeleteBin6Line } from "react-icons/ri";
+
+const text = ["조명철", "이병욱"];
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -59,6 +62,26 @@ const Header = () => {
             <button className="bg-[#282b30] text-white border border-[#5b6066] border-l-0 h-full rounded-l-none rounded-r-xl w-1/6 flex items-center justify-center">
               <IoIosSearch className="z-10" size={20} />
             </button>
+          </div>
+          <div className={`absolute flex items-center w-full  ${isHovered ? "h-full" : "h-0"} `}>
+            <div
+              className={`absolute top-[3px] left-0 md:w-[440px] w-[170px] bg-[#7a7c81] rounded-xl p-3  overflow-auto scrollbar-hide max-h-[208px] ${isHovered ? "opacity-100 max-h-[208px]" : "opacity-0 h-0"}`}
+            >
+              <ul className={`${isHovered ? "max-h-[208px]" : "h-0"}`}>
+                <h1 className="px-2">최근검색어</h1>
+                {text.map((data, index) => (
+                  <li
+                    key={index}
+                    className={`flex justify-between items-center px-3 w[340px] scale-y-100  leading-[52px] ${isHovered ? "h-[52px]" : "h-0"}`}
+                  >
+                    <h1 className="hover:bg-slate-500 w-full cursor-pointer">{data}</h1>
+                    <div className="hover:bg-slate-500 w-10 h-full flex justify-center items-center cursor-pointer">
+                      <RiDeleteBin6Line size={20} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </form>
         <div>
