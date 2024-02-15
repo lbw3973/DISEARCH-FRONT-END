@@ -39,9 +39,9 @@ const MypageList = () => {
           <div className="flex flex-wrap mx-auto px-4 font-Pretendard justify-center md:justify-normal w-full">
             {myBoards && myBoards.list.map((content, index) => <ContentItem content={content} key={index} />)}
             <div className="flex">
-              <button className="w-[180px] h-14 bg-[#3d9148] rounded-lg text-2xl mt-5">
-                <NavLink to={"/new"}>+ 서버 추가</NavLink>
-              </button>
+              <NavLink to={"/new"}>
+                <button className="w-[180px] h-14 bg-[#3d9148] rounded-lg text-2xl mt-5">+ 서버 추가</button>
+              </NavLink>
             </div>
           </div>
         </div>
