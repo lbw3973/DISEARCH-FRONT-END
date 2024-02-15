@@ -47,10 +47,13 @@ const Header = () => {
         </div>
         <form className="relative lg:w-[440px] sm:w-[330px] xs:w-[240px]" onSubmit={searchData}>
           <div className="flex h-12">
-            {isHovered ? <IoIosSearch className="absolute top-1/2 left-2 -translate-y-1/2 z-10" size={20} /> : ""}
+            <IoIosSearch
+              className={`${isHovered ? "opacity-100" : "opacity-0"} absolute top-1/2 left-2 -translate-y-1/2 z-10 duration-300`}
+              size={20}
+            />
             <input
               type="text"
-              className={`relative  w-full h-full rounded-l-xl bg-[#313338] border border-[#5b6066] text-white  outline-1 outline-gray-900 ${isHovered ? "pl-10" : "pl-3"}`}
+              className={`duration-300 relative  w-full h-full rounded-l-xl bg-[#313338] border border-[#5b6066] text-white  outline-1 outline-gray-900 ${isHovered ? "pl-10" : "pl-3"}`}
               placeholder="태그 검색"
               onFocus={() => setIsHovered(true)}
               onBlur={() => setIsHovered(false)}

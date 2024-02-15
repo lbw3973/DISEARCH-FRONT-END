@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <main>
       <Header />
-      <div className="pt-[120px]">
+      <div className="pt-[118px]">
         <Outlet />
       </div>
       <ScrollTopPageMove />
