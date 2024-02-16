@@ -18,7 +18,7 @@ const SideBar = () => {
               <li
                 key={index}
                 className="bg-[#ebcce7] text-black py-1 px-2 rounded-md font-bold cursor-pointer text-sm text-center hover:bg-[#e9b3e1] hover:scale-110 duration-300"
-                onClick={() => navigate(`/search/category/${item}`)}
+                onClick={() => navigate(`/search/category/${item}/1`)}
               >
                 {item}
               </li>
@@ -38,7 +38,7 @@ const SideBar = () => {
                   <li
                     key={index}
                     className="bg-[#f8b5a5] text-black py-1 px-2 rounded-md cursor-pointer text-sm hover:bg-[#ee9b87] hover:scale-110 duration-300"
-                    onClick={() => navigate(`/search/tag/${item.name}`)}
+                    onClick={() => navigate(`/search/tag/${item.name}/1`)}
                   >
                     <span className="font-bold">{item.name}</span>
                     <span className="text-gray-600 font-bold text-xs">({item.count})</span>

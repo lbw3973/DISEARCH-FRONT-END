@@ -31,7 +31,7 @@ const Header = () => {
   }, [status]);
 
   const logout = () => {
-    navigate("/");
+    navigate("/boards/1");
     setIsProfileClicked(!isProfileClicked);
     removeCookie("Disearch_access_token");
     setIsLogined(false);
@@ -44,16 +44,16 @@ const Header = () => {
     if (value) {
       setSearchedData(value);
       setIsHovered(false);
-      navigate(`/search/tag/${value}`);
+      navigate(`/search/tag/${value}/1`);
     }
+    inputRef.current?.blur();
   };
 
   const clickSearchedData = (data: string) => {
-    console.log("click!");
     if (inputRef.current) {
       inputRef.current.value = data;
     }
-    navigate(`/search/tag/${data}`);
+    navigate(`/search/tag/${data}/1`);
   };
 
   const clickRemoveSearchedData = (data: string) => {
@@ -63,7 +63,7 @@ const Header = () => {
   return (
     <header className=" bg-[#313338] w-full h-[100px] fixed shadow-md z-20 flex items-center font-Pretendard">
       <div className="flex items-center justify-between w-full md:px-10 p-0">
-        <div className="w-[170px] cursor-pointer" onClick={() => navigate("/")}>
+        <div className="w-[170px] cursor-pointer" onClick={() => navigate("/boards/1")}>
           <img src="/DISEARCH.gif" alt="로고" className="w-[150px]" />
         </div>
         <form className="relative lg:w-[440px] sm:w-[330px] xs:w-[240px] text-sm sm:text-base" onSubmit={searchData}>
@@ -129,7 +129,7 @@ const Header = () => {
                 )}
               </button>
               {isProfileClicked ? (
-                <div className="absolute top-[60px] right-0 bg-gray-500 whitespace-nowrap p-2 rounded-md">
+                <div className="absolute top-[60px] sm:right-0 right-2 bg-gray-500 whitespace-nowrap p-2 rounded-md">
                   <ul className="flex flex-col gap-1 items-center justify-center ">
                     <li
                       className="h-7 text-sm leading-7 cursor-pointer"

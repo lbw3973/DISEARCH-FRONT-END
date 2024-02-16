@@ -87,7 +87,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
                 <span
                   key={index}
                   className="bg-[#f8b5a5] rounded-md px-2 py-1 text-black font-bold text-sm cursor-pointer hover:bg-[#ee9b87] hover:scale-110 duration-300"
-                  onClick={() => navigate(`/search/tag/${tag}`)}
+                  onClick={() => navigate(`/search/tag/${tag}/1`)}
                 >
                   {tag}
                 </span>

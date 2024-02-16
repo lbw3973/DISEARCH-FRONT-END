@@ -19,7 +19,7 @@ const OAuth2 = () => {
       if (code) {
         getAccessToken(code);
       } else if (error) {
-        navigate("/");
+        navigate("/boards/1");
       }
     }
   }, []);
@@ -44,7 +44,7 @@ const OAuth2 = () => {
     const responseData = await response.json();
     setCookie("Disearch_access_token", responseData.access_token);
     setStatus(true);
-    navigate("/");
+    navigate("/boards/1");
   };
 
   return null;
