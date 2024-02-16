@@ -95,12 +95,8 @@
 
 ### 📱 Mobile
 
-|**메인**|**카페 정보**|
+|**메인**|**서버 게시**|
 | --- | --- |
-|<p align="center"><img src="" width="375" height="667" style="object-fit: cover; object-position: center;"></p>|<p align="center"><img src="" width="375" height="667" style="object-fit: cover; object-position: center;"></p>|
-
-|**제보하기**|**현위치**|
-| --- | --- |
-|<p align="center"><img src="" width="375" height="667" style="object-fit: cover; object-position: center;"></p>|<p align="center"><img src="" width="375" height="667" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/05b1ce00-fed3-4c9b-a0ae-0bd25d3d212d" width="375" height="667" style="object-fit: cover; object-position: center;"></p>|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/6bbefd63-5390-427c-833f-6c422206ee7e" width="375" height="667" style="object-fit: cover; object-position: center;"></p>|
 
 </div>
