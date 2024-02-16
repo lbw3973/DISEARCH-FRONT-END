@@ -43,6 +43,7 @@
 <img src="https://img.shields.io/badge/zustand-black?style=for-the-badge&logoColor=white">
 
 </br>
+</br>
 
 ### 🔧 Back-End Skills
 <img src="https://img.shields.io/badge/java-f49e4f?style=for-the-badge&&logoColor=white">
@@ -50,56 +51,47 @@
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><br>
 <img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white">
 
+</br>
+</br>
 
 ## 🖥 프로젝트 미리보기
 
 ### 💻 PC
 
-|**헤더 기능**|
+|**로그인/로그아웃**|
 | --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">원하는 카페타입에 선택해 카페들을 찾아볼 수 있습니다.</p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/5b938586-a265-4072-9e2e-ad302015eced" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center">Discord OAuth2 API를 사용하여 로그인 및 로그아웃을 진행할 수 있습니다.</p>|
 
-|**로그인 및 매장정보**|
+|**태그 검색**|
 | --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">구글로그인을 진행하여 원하는 매장을 즐겨찾기에 추가/삭제할 수 있습니다.</br>즐겨찾기한 카페들만을 볼 수 있습니다.</p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/f2f33165-13af-40c4-8698-d44bdf7099cc" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center">검색하고싶은 태그로 검색을 할 수 있습니다.<br/>검색한 내용은 최근검색어로 LocalStorage에 저장됩니다.</p>|
 
-|**카페이미지 및 상세보기**|
+|**페이지네이션**|
 | --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">카페사진을 볼 수 있고, 클릭하면 상세보기 모달이 열립니다.</p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/ce54bd63-0f38-41c8-b3d3-3dd880234049" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center">한 페이지에 12개의 게시물을 보여줍니다.<br/>페이지번호의 변화에 따른 API요청으로 페이지네이션을 구현했습니다.</p>|
 
-
-|**지도 재검색 및 현재위치**|
+|**사이드바**|
 | --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">지도상에서 위치를 이동시, 재검색을 할 수 있습니다.</br>접속위치 버튼으로 현재 접속위치로 이동할 수 있습니다.</p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/39389dc0-649d-4f5b-8ab2-37f23ac3e428" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center">원하는 카테고리와 태그를 클릭하여 검색할 수 있습니다.</p>|
 
-|**제보하기**|
+|**자신의 서버 게시**|
 | --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">사이트에 없는 매장을 누구나 제보할 수 있는 기능입니다.</p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/12df4bb9-5c71-4579-b966-4eb7700481ed" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center">자신의 서버를 업로드하여 홍보할 수 있습니다.<br/>서버를 업로드하면 해당 서버에 봇이 추가됩니다.</p>|
 
-|**백오피스 대시보드**|
+|**마이페이지**|
 | --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">관리자가 등록된 매장 및 제보리스트를 확인할 수 있는 대시보드 페이지입니다.</p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/6f2de05a-b035-4abb-9adc-f5529a6b21d5" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center">업로드한 서버를 확인하고 관리할 수 있습니다.</p>|
 
-|**백오피스 제보리스트**|
+|**서버 참가하기**|
 | --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">사용자들이 제보한 리스트들을 조회할 수 있는 페이지입니다.</br>관리자 검토 후, 데이터를 수정하거나 승인/반려를 진행할 수 있습니다.</p>|
-
-|**백오피스 매장추가**|
-| --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">관리자가 매장을 추가할 수 있습니다.</p>|
-
-|**백오피스 정보수정**|
-| --- |
-|<p align="center"><img src="" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
-|<p align="center">관리자가 매장정보 및 매장사진을 수정, 삭제할 수 있습니다.</p>|
+|<p align="center"><img src="https://github.com/lbw3973/DISEARCH-FRONT-END/assets/75530371/07db7cdb-4797-4bad-86dc-8cbc0224afad" width="750" height="400" style="object-fit: cover; object-position: center;"></p>|
+|<p align="center">Discord 초대코드 생성 API를 이용하여 해당 서버로 참가할 수 있습니다.</p>|
 
 ### 📱 Mobile
 
