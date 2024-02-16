@@ -129,7 +129,7 @@ const Header = () => {
                 )}
               </button>
               {isProfileClicked ? (
-                <div className="absolute top-[60px] right-0 bg-gray-500 whitespace-nowrap p-2 rounded-md">
+                <div className="absolute top-[60px] sm:right-0 right-2 bg-gray-500 whitespace-nowrap p-2 rounded-md">
                   <ul className="flex flex-col gap-1 items-center justify-center ">
                     <li
                       className="h-7 text-sm leading-7 cursor-pointer"
