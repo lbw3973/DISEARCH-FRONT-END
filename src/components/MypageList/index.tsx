@@ -40,7 +40,7 @@ const MypageList = () => {
             {myBoards && myBoards.list.map((content, index) => <ContentItem content={content} key={index} />)}
             <div className="flex">
               <NavLink to={"/new"}>
-                <button className="w-[180px] h-14 bg-[#3d9148] rounded-lg text-2xl mt-5">+ 서버 추가</button>
+                <button className="w-[180px] h-14 bg-[#3d9148] rounded-lg text-2xl my-5">+ 서버 추가</button>
               </NavLink>
             </div>
           </div>
