@@ -46,10 +46,10 @@ const Header = () => {
       setIsHovered(false);
       navigate(`/search/tag/${value}/1`);
     }
+    inputRef.current?.blur();
   };
 
   const clickSearchedData = (data: string) => {
-    console.log("click!");
     if (inputRef.current) {
       inputRef.current.value = data;
     }
