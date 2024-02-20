@@ -60,10 +60,17 @@ const Header = () => {
     removeSearchedData(data);
   };
 
+  const clickHeaderImg = () => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+    navigate("/boards/1");
+  };
+
   return (
     <header className=" bg-[#313338] w-full h-[100px] fixed shadow-md z-20 flex items-center font-Pretendard">
       <div className="flex items-center justify-between w-full md:px-10 p-0">
-        <div className="w-[170px] cursor-pointer" onClick={() => navigate("/boards/1")}>
+        <div className="w-[170px] cursor-pointer" onClick={clickHeaderImg}>
           <img src="/DISEARCH.gif" alt="로고" className="w-[150px]" />
         </div>
         <form className="relative lg:w-[440px] sm:w-[330px] xs:w-[240px] text-sm sm:text-base" onSubmit={searchData}>
