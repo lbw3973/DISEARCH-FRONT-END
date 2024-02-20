@@ -43,7 +43,7 @@ const ContentList = ({ searchType, searchParam }: { searchType?: string; searchP
           <p className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,1)] text-2xl">검색 결과가 없습니다😥</p>
         ) : (
           <>
-            <div className="flex flex-wrap mx-auto px-4 font-Pretendard justify-center md:justify-normal w-full">
+            <div className="flex flex-wrap mx-auto sm:px-4 px-0 font-Pretendard justify-center md:justify-normal w-full">
               {boards &&
                 boards.list.map((content, index) => <ContentItem content={content} key={index} hasJoinButton />)}
             </div>

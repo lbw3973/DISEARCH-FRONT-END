@@ -3,7 +3,7 @@ import { useGetUserInfo } from "@/hooks/useGetUserInfo";
 import { IContentItem } from "@/types/server";
 import { getPostingTime } from "@/util/parsePostringTime";
 import { useQueryClient } from "@tanstack/react-query";
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { useLocation, useNavigate } from "react-router-dom";
 
