@@ -127,7 +127,7 @@ const Header = () => {
           {isLogined ? (
             <div className="relative font-Pretendard">
               <button className="flex items-center" onClick={() => setIsProfileClicked(!isProfileClicked)}>
-                <img src="/discord.png" alt="디스코드로고" width={70} />
+                <img src="/discord.png" alt="디스코드로고" width={50} />
                 <p className="mr-1 hidden md:block">{userInfo && userInfo.username}</p>
                 {isProfileClicked ? (
                   <FaCaretUp className="hidden md:block" />
