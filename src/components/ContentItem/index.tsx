@@ -12,6 +12,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
   const [hasOpenButton, setHasOpenButton] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const contentBlockRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { userInfo } = useGetUserInfo();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -40,8 +41,16 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
     }
   };
 
+  const clickCloseItemDetail = () => {
+    setIsClicked(!isClicked);
+    window.scrollTo({
+      top: Number(containerRef.current?.offsetTop) - 100,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[340px] p-3 w-full">
+    <div className="2xl:w-1/3 lg:w-1/2 md:w-full min-w-[340px] p-3 w-full" ref={containerRef}>
       <div className="bg-[rgba(0,0,0,0.9)] rounded-md">
         <div className="flex justify-between p-3 items-center bg-gray-700 rounded-t-md">
           <h2 className="overflow-hidden md:text-xl text-ellipsis whitespace-nowrap">{content.serverName}</h2>
@@ -99,7 +108,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
         <div className="px-2 relative pb-4">
           <div
             ref={contentBlockRef}
-            className={`${isClicked ? "h-full" : "max-h-[240px]"} overflow-hidden pb-4 select-text break-words selection:bg-white selection:text-black`}
+            className={`${isClicked ? "h-full" : "max-h-[240px]"} overflow-hidden pb-10 select-text break-words selection:bg-white selection:text-black`}
           >
             {content.content
               .split("\n")
@@ -108,7 +117,7 @@ const ContentItem = ({ content, hasJoinButton }: { content: IContentItem; hasJoi
           {hasOpenButton && (
             <div
               className={`absolute bottom-0 left-1/2 -translate-x-1/2 text-center w-full h-16 rounded-b-md bg-gradient-to-b from-transparent to-black cursor-pointer`}
-              onClick={() => setIsClicked(!isClicked)}
+              onClick={clickCloseItemDetail}
               onMouseOver={() => setIsHovered(true)}
               onMouseOut={() => setIsHovered(false)}
             >
